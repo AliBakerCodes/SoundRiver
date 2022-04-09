@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Compiled and minified CSS -->
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -16,60 +17,94 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
     ></script>
+    <script
+      src="https://kit.fontawesome.com/2bbe752877.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="assets/js/script.js"></script>
     <title>SoundRiver Playlist</title>
   </head>
   <body>
-    <header>
-      <h1>SoundRiver</h1>
-    </header>
-    <div class="grid-container">
-      <aside>
-        <form class="searchContainer">
-          <div>
-            <label for="exampleArtist" class="form-label">Artist</label>
-            <input type="text" />
+    <div class="row">
+      <div class="col s12">
+        <header>
+          <h1>SoundRiver</h1>
+        </header>
+      </div>
+      <!-- <div class="col s6"> -->
+      <div class="row">
+        <div class="col s3">
+          <div class="card grey darken-2">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <label>Artist</label>
+              <input class="form-control" id="artistInput" />
+              <label>Title</label>
+              <input class="form-control" id="titleInput" />
+              <button class="submitBtn" id="addBtn">Submit</button>
+            </div>
+            <div
+              class="playlistHistory card-content white-text"
+              id="playlistHistory"
+            >
+              <ul>
+                <li><a href="#" id="playlistCol">PlaylistHistory1</a></li>
+                <li><a href="#" id="playlistCol">PlaylistHistory2</a></li>
+              </ul>
+            </div>
+            <div class="card-content white-text">
+              <span class="card-title" id="settings">Settings</span>
+              <ul>
+                <li id="setting1">Toggle On/Off</li>
+                <li id="setting2">Reorder the list</li>
+              </ul>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="exampleTitle" class="form-label">Title</label>
-            <input type="text" />
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </aside>
-      <section>
-        <ul class="collection with-header">
-          <li class="collection-header"><h4>Playlist</h4></li>
-          <li class="collection-item">
-            <div>
-              Placeholder<a href="#!" class="secondary-content"
-                ><i class="material-icons">Check it out</i></a
-              >
-            </div>
-          </li>
-          <li class="collection-item">
-            <div>
-              Placeholder<a href="#!" class="secondary-content"
-                ><i class="material-icons">Check it out</i></a
-              >
-            </div>
-          </li>
-          <li class="collection-item">
-            <div>
-              Placeholder<a href="#!" class="secondary-content"
-                ><i class="material-icons">Check it out</i></a
-              >
-            </div>
-          </li>
-          <li class="collection-item">
-            <div>
-              Placeholder<a href="#!" class="secondary-content"
-                ><i class="material-icons">Check it out</i></a
-              >
-            </div>
-          </li>
-        </ul>
-      </section>
+        </div>
+        <div class="col s9">
+          <section>
+            <ul class="collection with-header">
+              <li class="collection-header"><h4>Playlist</h4></li>
+              <li class="collection-item">
+                <div>
+                  AliIsTypingHere<a href="#!" class="secondary-content"
+                    ><i class="material-icons">Check it out</i></a
+                  >
+                </div>
+              </li>
+              <li class="collection-item">
+                <div>
+                  Placeholder<a href="#!" class="secondary-content"
+                    ><i class="material-icons">Check it out</i></a
+                  >
+                </div>
+              </li>
+              <li class="collection-item">
+                <div>
+                  Placeholder<a href="#!" class="secondary-content"
+                    ><i class="material-icons">Check it out</i></a
+                  >
+                </div>
+              </li>
+              <li class="collection-item">
+                <div>
+                  Placeholder<a href="#!" class="secondary-content"
+                    ><i class="material-icons">Check it out</i></a
+                  >
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <div class="footer-copyright">
+        <div class="container">
+          © 2022 Copyright
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
     </div>
   </body>
 </html>

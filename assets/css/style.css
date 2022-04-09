@@ -1,24 +1,12 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 header {
   background-image: url("/assets/images/background/guitar-2428921_1920.jpg");
-  padding: 20px;
-  margin: 20px;
+  padding: 0;
+  margin: 0;
+  /* border-top: 0; */
   text-align: center;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-/* .grid-container {
-  display: flex;
-  flex-direction: row;
-} */
-
-aside {
-  width: 25%;
-  float: left;
-}
-section {
-  width: 75%;
-  float: right;
 }
