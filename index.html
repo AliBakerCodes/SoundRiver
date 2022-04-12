@@ -17,6 +17,7 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
     ></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script
       src="https://kit.fontawesome.com/2bbe752877.js"
       crossorigin="anonymous"
@@ -63,36 +64,34 @@
         </div>
         <div class="col s9">
           <section>
+            <h4>Playlist</h4>
             <ul class="collection with-header">
-              <li class="collection-header"><h4>Playlist</h4></li>
-              <li class="collection-item">
-                <div>
-                  AliIsTypingHere<a href="#!" class="secondary-content"
-                    ><i class="material-icons">Check it out</i></a
-                  >
-                </div>
+              <!-- <li class="collection-header"><h4>Playlist</h4></li> -->
+              <div class="songCard">
+                <li class="collection-item mainSong">
+                  <div><i class="material-icons previousTrack">skip_previous</i></div>
+                  <div><i class="material-icons playTrack">play_arrow</i></div>
+                  <div><i class="material-icons pauseTrack">pause</i></div>
+                  <div><i class="material-icons nextTrack">skip_next</i></div>
+                  <div><span id="artist">Artist</span> - <span id="title">Title</span></div>
+                  <div><i class="fa-brands fa-soundcloud sound"></i></div>
+                  <div><i class="fa-brands fa-spotify spot"></i></div>
+                  <div><i class="fa-brands fa-youtube you"></i></div>
+                  <div><i class="material-icons remove">delete_forever</i></div>
+                  <div><i class="material-icons expand">keyboard_arrow_down</i></div> 
               </li>
-              <li class="collection-item">
-                <div>
-                  Placeholder<a href="#!" class="secondary-content"
-                    ><i class="material-icons">Check it out</i></a
-                  >
-                </div>
+              <li class="collection-item card-expand">
+                <div id="player" data-index="">Placeholder for embeded player </div>
+                <div><i class="material-icons share">share</i></div>
               </li>
-              <li class="collection-item">
-                <div>
-                  Placeholder<a href="#!" class="secondary-content"
-                    ><i class="material-icons">Check it out</i></a
-                  >
-                </div>
-              </li>
-              <li class="collection-item">
+            </div>
+              <!-- <li class="collection-item">
                 <div>
                   Placeholder<a href="#!" class="secondary-content"
                     ><i class="material-icons">Check it out</i></a
                   >
                 </div>
-              </li>
+              </li> -->
             </ul>
           </section>
         </div>
