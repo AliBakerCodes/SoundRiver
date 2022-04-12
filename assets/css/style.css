@@ -11,3 +11,10 @@ header {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.mainSong {
+  display: flex;
+}
+
+.card-expand {
+  display: flex;
+}
