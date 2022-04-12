@@ -13,6 +13,46 @@ header {
 
 .mainSong {
   display: flex;
+  position: relative;
+}
+
+.artist-title {
+  position: absolute;
+  left: 150px;
+  font-size: 1.25rem;
+}
+
+.sound {
+  position: absolute;
+  right: 190px;
+  top: 15px;
+}
+
+.spot {
+  position: absolute;
+  right: 160px;
+  top: 15px;
+}
+
+.you {
+  position: absolute;
+  right: 130px;
+  top: 15px;
+}
+
+.event {
+  position: absolute;
+  right: 100px;
+}
+
+.remove {
+  position: absolute;
+  right: 45px;
+}
+
+.expand {
+  position: absolute;
+  right: 15px;
 }
 
 .card-expand {
