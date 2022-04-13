@@ -11,33 +11,63 @@ header {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+button {
+  border: none;
+  background-color: transparent;
+}
+
 .mainSong {
   display: flex;
   position: relative;
+  height: 50px;
+}
+
+.previousTrack {
+  position: absolute;
+  left: 25px;
+}
+
+.playTrack {
+  position: absolute;
+  left: 50px;
+  
+}
+
+.pauseTrack {
+  position: absolute;
+  left: 75px;
+  
+}
+
+.nextTrack {
+  position: absolute;
+  left: 100px;
+  
 }
 
 .artist-title {
   position: absolute;
   left: 150px;
   font-size: 1.25rem;
+  top: 12px;
 }
 
 .sound {
   position: absolute;
   right: 190px;
-  top: 15px;
+  top: 14px;
 }
 
 .spot {
   position: absolute;
   right: 160px;
-  top: 15px;
+  top: 14px;
 }
 
 .you {
   position: absolute;
-  right: 130px;
-  top: 15px;
+  right: 128px;
+  top: 14px;
 }
 
 .event {
