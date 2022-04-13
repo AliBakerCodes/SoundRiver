@@ -16,10 +16,19 @@ button {
   background-color: transparent;
 }
 
+button:focus {
+  background-color: transparent;
+}
+
 .mainSong {
   display: flex;
   position: relative;
   height: 50px;
+}
+
+.card-expand {
+  display: flex;
+  position: relative;
 }
 
 .previousTrack {
@@ -87,4 +96,13 @@ button {
 
 .card-expand {
   display: flex;
+}
+
+.share {
+  position: absolute;
+  right: 15px;
+}
+
+#player {
+  margin: auto;
 }
