@@ -1,16 +1,110 @@
-/* * {
-  box-sizing: border-box;
-} */
-header {
+body {
   background-image: url("/assets/images/background/guitar-2428921_1920.jpg");
-  padding: 0;
-  margin: 0;
-  /* border-top: 0; */
+  background-size: cover;
+}
+
+header {
+  padding: 30px;
+  margin-bottom: 10px;
   text-align: center;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* .mainpage {
+  margin-top: 30px;
+} */
+
+/* hr.rounded {
+  border-top: 5px solid #bbb;
+  border-radius: 5px;
+} */
+
+.asideCard {
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px lightgrey;
+}
+
+.searchLabel {
+  font-size: 20px;
+  color: whitesmoke;
+  font-family: cursive;
+}
+
+/* need to find out where to control the form search color.  */
+.inputText {
+  border-radius: 1rem;
+  color: grey;
+  padding: 10px;
+  margin: 10px;
+  border-bottom: 1px solid darkgrey;
+}
+
+h1 {
+  font-family: "Babylonica", cursive;
+  color: whitesmoke;
+  font-size: 100px;
+}
+
+h2 {
+  font-family: cursive;
+}
+footer {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+}
+
+footer h4,
+h5 {
+  font-family: cursive;
+  font-size: x-large;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-family: cursive;
+  font-weight: bold;
+}
+
+.page-footer {
+  background: transparent;
+}
+
+.addBtn:hover {
+  opacity: 70%;
+}
+
+.playlistCol:link {
+  font-family: cursive;
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.playlistCol:visited {
+  color: lightgray;
+}
+
+.playlistCol:hover {
+  color: royalblue;
+}
+
+.playlistCol:active {
+  color: lightskyblue;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.settingList {
+  font-size: 20px;
+  font-family: cursive;
+}
 .mainSong {
   display: flex;
 }
