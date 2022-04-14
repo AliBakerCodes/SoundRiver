@@ -3,6 +3,10 @@ body {
   background-size: cover;
 }
 
+.hide {
+  display:none;
+}
+
 header {
   padding: 30px;
   margin-bottom: 10px;
@@ -126,9 +130,9 @@ h5 {
   position: relative;
 }
 
-.collapsible {
+/* .collapsible {
   display: none;
-}
+} */
 
 
 .previousTrack {
