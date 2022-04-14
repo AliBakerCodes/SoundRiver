@@ -1,9 +1,9 @@
 {
   "liveServer.settings.port": 5502,
-  "liveServer.settings.https": {
-    "enable": true, //set it true to enable the feature.
-    "cert": "/Documents/Bootcamp/projects/SoundRiver/.vscode/localhost.pem", //full path of the certificate
-    "key": "C/Documents/Bootcamp/projects/SoundRiver/.vscode/localhost.key", //full path of the private key
-    "passphrase": "12345"
-    }
-}
+//   "liveServer.settings.https": {
+//     "enable": true, //set it true to enable the feature.
+//     "cert": "/Documents/Bootcamp/projects/SoundRiver/.vscode/localhost.pem", //full path of the certificate
+//     "key": "C/Documents/Bootcamp/projects/SoundRiver/.vscode/localhost.key", //full path of the private key
+//     "passphrase": "12345"
+//     }
+// }
