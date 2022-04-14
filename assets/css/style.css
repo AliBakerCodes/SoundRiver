@@ -130,7 +130,6 @@ h5 {
   display: none;
 }
 
-
 .previousTrack {
   position: absolute;
   left: 25px;
@@ -139,19 +138,16 @@ h5 {
 .playTrack {
   position: absolute;
   left: 50px;
-  
 }
 
 .pauseTrack {
   position: absolute;
   left: 75px;
-  
 }
 
 .nextTrack {
   position: absolute;
   left: 100px;
-  
 }
 
 .artist-title {
