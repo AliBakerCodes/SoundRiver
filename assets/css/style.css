@@ -137,23 +137,23 @@ h5 {
 
 .previousTrack {
   position: absolute;
-  left: 50px;
+  left: 25px;
 }
 
 .playTrack {
   position: absolute;
-  left: 75px;
+  left: 50px;
 }
 
 .pauseTrack {
   position: absolute;
-  left: 100px;
+  left: 75px;
   
 }
 
 .nextTrack {
   position: absolute;
-  left: 125px;
+  left: 100px;
   
 }
 
@@ -214,7 +214,7 @@ h5 {
   font-size: 20px;
   color: black;
   font-family: cursive;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 #playlistInput {
@@ -234,15 +234,15 @@ h5 {
 
 #savePlaylist {
   position: absolute;
-  /* left: 240px; */
+  left: 240px;
   top: 12px;
-  left: 265px;
+  /* left: 265px; */
 }
 
 #playAll {
   position: absolute;
-  /* left: 265px; */
-  /* top: 12px; */
-  left: 25px;
+  left: 265px;
+  top: 12px;
+  /* left: 25px; */
 }
 
