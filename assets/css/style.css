@@ -4,7 +4,7 @@ body {
 }
 
 .hide {
-  display:none;
+  display: none;
 }
 
 header {
@@ -34,23 +34,43 @@ button:focus {
 } */
 
 .asideCard {
-  border-radius: 1rem;
-  box-shadow: 5px 5px 5px lightgrey;
+  border-radius: 2rem;
+  /* box-shadow: 5px 5px 5px lightgrey; */
+  padding: 20px;
+  margin: 20px;
+  opacity: 80%;
+}
+.asideCard:hover {
+  opacity: 70%;
 }
 
 .searchLabel {
   font-size: 20px;
   color: whitesmoke;
   font-family: cursive;
+  /* margin-top: 10px;
+  padding-bottom: 10px; */
 }
 
 /* need to find out where to control the form search color.  */
 .inputText {
   border-radius: 1rem;
   color: grey;
-  padding: 10px;
+  padding: 20px;
   margin: 10px;
-  border-bottom: 1px solid darkgrey;
+}
+
+.playlistRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settingHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  align-items: center;
 }
 
 h1 {
@@ -71,6 +91,14 @@ footer h4,
 h5 {
   font-family: cursive;
   font-size: x-large;
+}
+
+/* Hi Ali, I've added a couple of paragraph for the footer links, I want the user click on the "Our team", "Business strategy", "Business development" and "Contact us", the corresponding parts ".teamHide",  ".bizHide", ".devHide", ".contactHide" will show, it's easier to do it in JavaScript, can you please add this part? Thank you so much. */
+.teamHide,
+.bizHide,
+.devHide,
+.contactHide {
+  display: none;
 }
 
 .addBtn {
@@ -134,7 +162,6 @@ h5 {
   display: none;
 } */
 
-
 .previousTrack {
   position: absolute;
   left: 25px;
@@ -148,13 +175,12 @@ h5 {
 .pauseTrack {
   position: absolute;
   left: 75px;
-  
 }
+
 
 .nextTrack {
   position: absolute;
   left: 100px;
-  
 }
 
 .artist-title {
