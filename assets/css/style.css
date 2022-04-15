@@ -137,24 +137,23 @@ h5 {
 
 .previousTrack {
   position: absolute;
-  left: 25px;
+  left: 50px;
 }
 
 .playTrack {
   position: absolute;
-  left: 50px;
-  
+  left: 75px;
 }
 
 .pauseTrack {
   position: absolute;
-  left: 75px;
+  left: 100px;
   
 }
 
 .nextTrack {
   position: absolute;
-  left: 100px;
+  left: 125px;
   
 }
 
@@ -210,3 +209,40 @@ h5 {
 #player {
   margin: auto;
 }
+
+.artist-title {
+  font-size: 20px;
+  color: black;
+  font-family: cursive;
+  margin-left: 15px;
+}
+
+#playlistInput {
+  font-size: 20px;
+  color: whitesmoke;
+  font-family: cursive;
+  width: 300px;
+  padding-left: 10px;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 4px lightgrey;
+}
+
+.createPlaylist {
+  display: flex;
+  position: relative;
+}
+
+#savePlaylist {
+  position: absolute;
+  /* left: 240px; */
+  top: 12px;
+  left: 265px;
+}
+
+#playAll {
+  position: absolute;
+  /* left: 265px; */
+  /* top: 12px; */
+  left: 25px;
+}
+
