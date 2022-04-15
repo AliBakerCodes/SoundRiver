@@ -214,7 +214,7 @@ h5 {
   font-size: 20px;
   color: black;
   font-family: cursive;
-  margin-left: 12px;
+  margin-left: 15px;
 }
 
 #playlistInput {
@@ -223,6 +223,8 @@ h5 {
   font-family: cursive;
   width: 300px;
   padding-left: 10px;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 4px lightgrey;
 }
 
 .createPlaylist {
