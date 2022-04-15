@@ -5,15 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Compiled and minified CSS -->
-
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Babylonica&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,10 +28,6 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
     ></script>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
     <script
       src="https://kit.fontawesome.com/2bbe752877.js"
       crossorigin="anonymous"
@@ -77,16 +77,40 @@
               class="playlistHistory card-content white-text"
               id="playlistHistory"
             >
+            <h2 class="card-title">Playlists Library:</h2>
               <ul>
-                <li>
+                <li class="playlistRow">
                   <a href="#" class="playlistCol" id="playlistCol"
                     >Playlist History 1</a
                   >
+                  <div>
+                    <span class="material-icons favIcon">
+                      favorite_border
+                    </span>
+                    <span class="material-icons shareIcon">
+                      ios_share
+                    </span>
+                    <span class="material-icons deleteIcon">
+                      delete_outline
+                    </span>
+                  </div>  
                 </li>
-                <li>
+
+                <li class="playlistRow">
                   <a href="#" class="playlistCol" id="playlistCol"
                     >Playlist History 2</a
                   >
+                  <div>
+                    <span class="material-icons favIcon">
+                      favorite_border
+                    </span>
+                    <span class="material-icons shareIcon">
+                      ios_share
+                    </span>
+                    <span class="material-icons deleteIcon">
+                      delete_outline
+                    </span>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -94,9 +118,9 @@
 
             <div class="card-content white-text">
               <h2 class="card-title" class="settings" id="settings">
-                Settings
+                  Settings
               </h2>
-
+              
               <ul class="settingList">
                 <div class="flexContainer">
                   <li id="setting1">Setting 1</li>
@@ -212,12 +236,36 @@
             <p class="grey-text text-lighten-4">Please click on the links to the right to learn more. </p>
           </div>
           <div class="col l4 offset-l2 s12">
+            <!-- Hi Ali, I've added a couple of paragraph for the footer links, I want the user click on the "Our team", "Business strategy", "Business development" and "Contact us", the corresponding parts ".teamHide",  ".bizHide", ".devHide", ".contactHide" will show, it's easier to do it in JavaScript, can you please add this part? Thank you so much. -->
             <h5 class="white-text">About</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Our team</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Business strategy</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Business development</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Contact us</a></li>
+              <li>
+                <h6><a class="grey-text text-lighten-3 teamLink" href="#!">Our team</a></h6>
+                <p class="teamHide">UI/UX Design: <br>
+                  James Wong and Jessie Doherty<br>
+                  JavaScript Engineer: <br>
+                  Ali Baker
+                </p>
+              </li>
+              <li>
+                <h6><a class="grey-text text-lighten-3 bizstrategyLink" href="#!">Business strategy</a></h6>
+                <p class="bizHide">
+                  A one-stop-shop for creating a playlist with posts from all multimedia platforms, getting information about the upcoming events, share your created playlist with friends and family, and so much more!
+                </p>
+              </li>
+              <li>
+                <h6><a class="grey-text text-lighten-3 bizdevLink" href="#!">Business development</a></h6>
+                <p class="devHide">Collaborate with us to expand your exposure on the Internet, reaching billions of audience ASAP!</p>
+              </li>
+              <li>
+                <h6><a class="grey-text text-lighten-3 contactLink" href="#!">Contact us</a></h6>
+                <div class="contactHide">
+                  <p>Ali Baker: <a href="mailto:alibakerconsulting@gmail.com">alibakerconsulting@gmail.com</a></p>
+                  <p>James Wong: <a href="mailto:jamesyeuwong@gmail.com">jamesyeuwong@gmail.com</a></p>
+                  <p>Jessie Doherty: <a href="mailto:zhuzhu93028@gmail.com">zhuzhu93028@gmail.com</a></p>
+                </div>
+                
+              </li>
             </ul>
           </div>
         </div>
