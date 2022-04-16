@@ -1,5 +1,5 @@
 body {
-  background-image: url("/assets/images/background/guitar-2428921_1920.jpg");
+  background-image: url("../images/background/guitar-2428921_1920.jpg");
   background-size: cover;
 }
 
@@ -179,7 +179,6 @@ h5 {
   left: 75px;
 }
 
-
 .nextTrack {
   position: absolute;
   left: 100px;
@@ -304,3 +303,4 @@ button[data-tooltip]:after {
 button[data-tooltip] {
   position: relative;
 }
+
