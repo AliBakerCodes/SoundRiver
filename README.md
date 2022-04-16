@@ -37,7 +37,7 @@ We've gone through the following process:
 
 ## The Homepage:
 
-The [homepage] (https://alibakercodes.github.io/SoundRiver/) presents the following:
+The [homepage](https://alibakercodes.github.io/SoundRiver/) presents the following:
 
 - A simple, elegant, and well thought-out UI.
   - The header only includes the title of the site;
