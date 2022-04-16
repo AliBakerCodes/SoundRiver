@@ -7,7 +7,8 @@ var getTrack = async function(searchString) {
     console.log("Getting Track:SoundCloud")
     var soundSearch = `${SEARCH_URL}${searchString}+site:soundcloud.com`
     console.log("Soundcloud search string: " + soundSearch)
-    getApi(soundSearch)
+    var results= await getApi(soundSearch);
+    console.log(results);
 }
 
 
