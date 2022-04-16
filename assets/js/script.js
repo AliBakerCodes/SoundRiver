@@ -166,6 +166,12 @@ function setEventListeners() {
         console.log(ele);
         collapse(ele);
       }
+      if (target.hasClass("remove")) { //Remove Button Click
+        console.log("Remove Button Click");
+        var ele=$(target).closest('.songCard').remove();
+        console.log(ele);
+        collapse(ele);
+      }
     })
   
 };
