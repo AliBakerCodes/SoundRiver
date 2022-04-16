@@ -21,19 +21,19 @@ By: Ali Baker, James Wong and Jessie Doherty
 
 The completed application should meet the following criteria:
 
-- As a user, I want to enter the artist name and a title I want to search, then I’m presented with a list with anything related to that artist/title pulled from multiple platforms, as well as the upcoming events for that artist on eventbrite.
+- As a user, I want to enter the artist name and a title I want to search, then I’m presented with a list with anything related to that artist/title pulled from multiple platforms, as well as the upcoming events for that artist on songkick.
 - Then I can create a unique playlist, and add that audio/video into my playlist; I can play the piece directly in this website;
 - I can keep adding/deleting audio/videos to that specific playlist;
 - I can create multiple playlists, delete or reorder them based on my needs;
 - I can share my unique playlist with anyone online, or post to my social media accounts.
-- API used: [SoundCloud](https://connect.soundcloud.com/sdk/sdk-3.3.2.js), [Youtube](https://www.youtube.com/iframe_api), [Serpstack](http://api.serpstack.com/), [Eventbrite](https://www.eventbriteapi.com/v3).
+- API used: [SoundCloud](https://connect.soundcloud.com/sdk/sdk-3.3.2.js), [Youtube](https://www.youtube.com/iframe_api), [Serpstack](http://api.serpstack.com/), [songkick](https://www.songkickapi.com/v3).
 
 ## Process:
 
 We've gone through the following process:
 
 - Brainstorming --> Designing --> Planning --> Execution --> Debugging --> Delivery --> Presenting.
-- Technology used: HTML, CSS, JavaScript, Materialize Framework, third-party APIs from SoundCloud, Google, Youtube, Eventbrite, serpstack, etc.
+- Technology used: HTML, CSS, JavaScript, Materialize Framework, third-party APIs from SoundCloud, Google, Youtube, songkick, serpstack, etc.
 
 ## The Homepage:
 

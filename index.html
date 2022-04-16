@@ -50,9 +50,13 @@
             <div class="card-content white-text">
               <h2 class="card-title">Please search an artist or a title:</h2>
               <label class="searchLabel">Artist: </label>
-              <input class="form-control inputText white-text grey" id="artistInput" />
+              <h4>
+                <input class="form-control inputText white-text grey darken-2" id="artistInput" />
+              </h4>
               <label class="searchLabel">Title: </label>
-              <input class="form-control inputText white-text grey" id="titleInput" />
+              <h4>
+                <input class="form-control inputText white-text grey darken-2" id="titleInput" />
+              </h4>
               <button
                 class="btn waves-effect grey darken-3 addBtn"
                 id="addBtn"
@@ -126,7 +130,17 @@
                   </div>
                 </div>
                 <!--Trying to think of a new setting in here. -->
-                <li id="setting2">Setting 2</li>
+                <div class="flexContainer">
+                  <li id="setting2">Prefer</li>
+                  <div class="switch">
+                    <label class="white-text">
+                      SoundCloud
+                      <input id="autoplaySwitch" type="checkbox" checked/>
+                      <span class="lever grey darken-3"></span>
+                      YouTube
+                    </label>
+                  </div>
+                </div>               
               </ul>
             </div>
           </div>
