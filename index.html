@@ -32,12 +32,6 @@
       src="https://kit.fontawesome.com/2bbe752877.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
-<script>
-  SC.initialize({
-    client_id: '466254-334693-885304-195070',
-    redirect_uri: 'sccallback.html'
-  });
 </script>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -123,11 +117,11 @@
               
               <ul class="settingList">
                 <div class="flexContainer">
-                  <li id="setting1">Setting 1</li>
+                  <li id="autoplay">AutoPlay Next Track</li>
                   <div class="switch">
                     <label>
                       Off
-                      <input type="checkbox" />
+                      <input id="autoplaySwitch" type="checkbox" checked/>
                       <span class="lever grey darken-3"></span>
                       On
                     </label>
@@ -165,7 +159,7 @@
                 </li>
                 <div class="collapsible hide">
                   <li class="collection-item card-expand">
-                    <div class="player" ><iframe data-frame-index="0" id="sc-0" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                    <div class="player" ><iframe data-sc-index="0" class="soundcloud" data-frame-index="0" id="sc-0" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
                       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//kodak-black/super-gremlin&{auto_play}">
                     </iframe></div>
                     <div class="eventbrite-content"></div>
