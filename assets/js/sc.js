@@ -1,6 +1,6 @@
-// ------Variables-----
+//------Variables-----
 var autoplay=document.querySelector('#autoplaySwitch').value;
-// ------Functions------
+//------Functions------
 var scIframeIds = [];
 var scplayerobjects=[];
 function scEvents(){
@@ -16,7 +16,7 @@ function scEvents(){
     index=document.querySelector(`#${iframeId}`).getAttribute('data-frame-index')
     console.log('SC widget Index is:' + index)
     if(autoplay){
-        nextTrackHandler(index);
+        nextTrackHandler(Number(index));
     }
 })});
 }
