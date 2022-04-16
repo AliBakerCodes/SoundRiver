@@ -11,15 +11,17 @@ const HIDE_CLASS = 'hide';
 var currentPlaylistObj;
 var currentSongObj;
 var newSong;
+var playlistHistory;
 
 //-------------Objects------------------------------
-function songObj(artist, title,scLInk,spLink,ytLink,ebLink) {
+function songObj(artist, title,scLInk,spLink,ytLink,ebLink, defaultPlayer) {
   this.artist = artist;
   this.title = title;
   this.scLInk = scLInk;
   this.spLink = spLink;
   this.ytLink = ytLink;
   this.ebLink = ebLink;
+  this.defaultPlayer = defaultPlayer;
 }
 
 function playlistObj(name,songs) {
@@ -51,8 +53,8 @@ function createPlaylist(){
     currentPlaylistObj.songs=[]
 };
 
-function createSong(artist, title,scLInk,spLink,ytLink,ebLink){
-  newSong= new songObj(artist,title,scLInk,spLink,ytLink,ebLink);
+function createSong(artist, title,scLInk,spLink,ytLink,ebLink,defaultPlayer){
+  newSong= new songObj(artist,title,scLInk,spLink,ytLink,ebLink,defaultPlayer);
   console.log("Creating Song");
   console.log(newSong);
 };
@@ -74,6 +76,20 @@ function formSubmitHandler(event){
   addSong();
 };
 
+function playPauseHandler(index){
+  var frames = window.frames;
+  console.log("Frames:");
+  console.log(frames);
+for (var i = 0; i < frames.length; i++) { 
+  var sounds = frames[i].document.getElementsByTagName('iframe');
+  // for(j=0; j<sounds.length; j++){
+  //   sounds[j].pause();
+  // }
+  console.log("Frame");
+  console.log(frames[i])
+}
+};
+
 // ------------Event Listeners----------------------
 function setEventListeners() {
     searchEL.addEventListener('click',formSubmitHandler);
@@ -86,6 +102,7 @@ function setEventListeners() {
       if (target.hasClass("playTrack")) { //Play Button Click
         console.log("Play Click");
         console.log($(".playTrack").index(this));
+        playPauseHandler(index);
         // scPlayPause($(".playTrack").index(this))
 
       };
