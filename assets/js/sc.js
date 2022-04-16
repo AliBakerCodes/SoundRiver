@@ -1,3 +1,5 @@
+// ------Variables-----
+var autoplay=document.querySelector('#autoplaySwitch').value;
 // ------Functions------
 var scIframeIds = [];
 var scplayerobjects=[];
@@ -10,7 +12,12 @@ function scEvents(){
     var scWidget = SC.Widget(iframeId);
     scWidget.bind(SC.Widget.Events.FINISH, function() {        
     console.log("Bound SC Finish for: " +iframeId);
-    
+    console.log("Autoplay is " + autoplay)
+    index=document.querySelector(`#${iframeId}`).getAttribute('data-frame-index')
+    console.log('SC widget Index is:' + index)
+    if(autoplay){
+        nextTrackHandler(index);
+    }
 })});
 }
 
@@ -43,6 +50,4 @@ function scPlay(index){
     scWidget.play();
 }
 
-function call(data){
-    return data;
-}
+

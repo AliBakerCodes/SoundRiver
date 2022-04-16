@@ -33,6 +33,7 @@ function playlistObj(name,songs) {
 function init(){
     createPlaylist();
     setEventListeners();
+    scEvents()
 
 }
 
@@ -100,6 +101,7 @@ function nextTrackHandler(index){
     ytPause(index);
   }
   var nextEmbed=document.querySelector(`[data-frame-index="${index+1}"]`);
+  console.log("Next Embed")
   console.log(nextEmbed)
   if(nextEmbed.src.includes("soundcloud")){
     scPlay(index+1) 
