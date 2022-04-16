@@ -287,3 +287,15 @@ button[data-tooltip]:after {
 button[data-tooltip] {
   position: relative;
 }
+
+.favIcon {
+  color: whitesmoke;
+}
+
+.shareIcon {
+  color: whitesmoke;
+}
+
+.deleteIcon {
+  color: whitesmoke;
+}
