@@ -26,7 +26,7 @@ The completed application should meet the following criteria:
 - I can keep adding/deleting audio/videos to that specific playlist;
 - I can create multiple playlists, delete or reorder them based on my needs;
 - I can share my unique playlist with anyone online, or post to my social media accounts.
-- API used: [SoundCloud](https://connect.soundcloud.com/sdk/sdk-3.3.2.js; https://w.soundcloud.com/player/api.js), [Youtube](https://www.youtube.com/iframe_api), [serpstack](http://api.serpstack.com/), [Eventbrite](https://www.eventbriteapi.com/v3).
+- API used: [SoundCloud](https://connect.soundcloud.com/sdk/sdk-3.3.2.js), [Youtube](https://www.youtube.com/iframe_api), [Serpstack](http://api.serpstack.com/), [Eventbrite](https://www.eventbriteapi.com/v3).
 
 ## Process:
 
@@ -37,7 +37,7 @@ We've gone through the following process:
 
 ## The Homepage:
 
-The [homepage] (https://alibakercodes.github.io/SoundRiver/) presents the following:
+The [homepage](https://alibakercodes.github.io/SoundRiver/) presents the following:
 
 - A simple, elegant, and well thought-out UI.
   - The header only includes the title of the site;
@@ -59,10 +59,10 @@ The [homepage] (https://alibakercodes.github.io/SoundRiver/) presents the follow
 ## Assets:
 
 The following image demonstrates the homepage's appearance and functionality:
-![Homepage](assets/images/screenshot/Screenshot for the website.png)
+![Homepage](assets/images/screenshot/Homepage.png)
 
 The following image demonstrates the left section and its functionality:
-![Leftsection](assets/images/screenshot/Left section with search area_playlist library.png)
+![Leftsection](assets/images/screenshot/Left_with_search.png)
 
 The following image demonstrates the search results page's appearance and functionality:
 ![Search result](assets/images/screenshot/Playlist_creation_and_search_result.png)
