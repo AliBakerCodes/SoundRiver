@@ -67,3 +67,10 @@ var player;
       targetPlayer.pauseVideo();
     }
   }
+
+  function ytPause(index){
+    var ytFrame=document.querySelector(`[data-frame-index="${index}"]`)
+    var ytIndex=ytFrame.getAttribute("data-yt-index");
+    var targetPlayer=playerobjects[ytIndex];
+    targetPlayer.pauseVideo();
+  }
