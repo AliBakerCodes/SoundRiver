@@ -24,18 +24,8 @@ button:focus {
   background-color: transparent;
 }
 
-/* .mainpage {
-  margin-top: 30px;
-} */
-
-/* hr.rounded {
-  border-top: 5px solid #bbb;
-  border-radius: 5px;
-} */
-
 .asideCard {
   border-radius: 2rem;
-  /* box-shadow: 5px 5px 5px lightgrey; */
   padding: 20px;
   margin: 20px;
   opacity: 80%;
@@ -48,8 +38,6 @@ button:focus {
   font-size: 20px;
   color: whitesmoke;
   font-family: cursive;
-  /* margin-top: 10px;
-  padding-bottom: 10px; */
 }
 
 /* need to find out where to control the form search color.  */
@@ -159,10 +147,6 @@ h5 {
   position: relative;
   opacity: 80%;
 }
-
-/* .collapsible {
-  display: none;
-} */
 
 .previousTrack {
   position: absolute;
@@ -303,4 +287,3 @@ button[data-tooltip]:after {
 button[data-tooltip] {
   position: relative;
 }
-
