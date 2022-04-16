@@ -73,4 +73,15 @@ var player;
     var ytIndex=ytFrame.getAttribute("data-yt-index");
     var targetPlayer=playerobjects[ytIndex];
     targetPlayer.pauseVideo();
+    var playerStatus = targetPlayer.getPlayerState();
+    console.log("Player Status: " + playerStatus);
+  }
+
+  function ytPlay(index){
+    var ytFrame=document.querySelector(`[data-frame-index="${index}"]`)
+    var ytIndex=ytFrame.getAttribute("data-yt-index");
+    var targetPlayer=playerobjects[ytIndex];
+    targetPlayer.playVideo();
+    var playerStatus = targetPlayer.getPlayerState();
+    console.log("Player Status: " + playerStatus);
   }

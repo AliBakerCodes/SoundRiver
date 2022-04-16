@@ -102,11 +102,36 @@ function nextTrackHandler(index){
   var nextEmbed=document.querySelector(`[data-frame-index="${index+1}"]`);
   console.log(nextEmbed)
   if(nextEmbed.src.includes("soundcloud")){
-    scPlayPause(index+1) 
+    scPlay(index+1) 
   } else if(nextEmbed.src.includes("youtube")) {
-    ytPlayPause(index+1);
+    ytPlay(index+1);
   }else if(nextEmbed.src.includes("spotify")) {
     nextTrackHandler(index+1);
+  }
+};
+
+function previousTrackHandler(index){
+  console.log("Previous Track Index: "+ index)
+  var numTracks=document.querySelectorAll('.player').length;
+  console.log(numTracks)
+  if(index-1<0){
+    return;
+  }
+  var currentEmbed=document.querySelector(`[data-frame-index="${index}"]`);
+  console.log(currentEmbed)
+  if(currentEmbed.src.includes("soundcloud")){
+    scPause(index) 
+  } else if(currentEmbed.src.includes("youtube")) {
+    ytPause(index);
+  }
+  var prevEmbed=document.querySelector(`[data-frame-index="${index-1}"]`);
+  console.log(prevEmbed)
+  if(prevEmbed.src.includes("soundcloud")){
+    scPlay(index-1) 
+  } else if(prevEmbed.src.includes("youtube")) {
+    ytPlay(index-1);
+  }else if(prevEmbed.src.includes("spotify")) {
+    previousTrackHandler(index-1);
   }
 };
 
@@ -118,22 +143,22 @@ function setEventListeners() {
       var target = $(event.currentTarget);
       var index = target.index(this)
       console.log(target);
-      console.log("Index: " + index)
       if (target.hasClass("playTrack")) { //Play Button Click
         console.log("Play Click");
-        console.log($(".playTrack").index(this));
         playPauseHandler($(".playTrack").index(this));
-        // scPlayPause($(".playTrack").index(this))
 
       };
-      if (target.hasClass("nextTrack")) { //Play Button Click
+      if (target.hasClass("nextTrack")) { //Next Track Button Click
         console.log("Next Click");
-        console.log($(".playTrack").index(this));
         nextTrackHandler($(".nextTrack").index(this));
-        // scPlayPause($(".playTrack").index(this))
 
       };
-      if (target.hasClass("expand")) { //Play Button Click
+      if (target.hasClass("previousTrack")) { //Previous Track Button Click
+        console.log("Previous Click");
+        previousTrackHandler($(".previousTrack").index(this));
+
+      };
+      if (target.hasClass("expand")) { //Expand Button Click
         console.log("Expand Button Click");
         var ele=$(target).offsetParent().next()
         console.log(ele);
