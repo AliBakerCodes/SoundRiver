@@ -77,17 +77,13 @@ function formSubmitHandler(event){
 };
 
 function playPauseHandler(index){
-  var frames = window.frames;
-  console.log("Frames:");
-  console.log(frames);
-for (var i = 0; i < frames.length; i++) { 
-  var sounds = frames[i].document.getElementsByTagName('iframe');
-  // for(j=0; j<sounds.length; j++){
-  //   sounds[j].pause();
-  // }
-  console.log("Frame");
-  console.log(frames[i])
-}
+  var currentEmbed=document.querySelector(`[data-frame-index="${index}"]`);
+  console.log(currentEmbed)
+  if(currentEmbed.src.includes("soundcloud")){
+    scPlayPause(index) 
+  } else if(currentEmbed.src.includes("youtube")) {
+    ytPlayPause(index);
+  }
 };
 
 // ------------Event Listeners----------------------
@@ -102,7 +98,7 @@ function setEventListeners() {
       if (target.hasClass("playTrack")) { //Play Button Click
         console.log("Play Click");
         console.log($(".playTrack").index(this));
-        playPauseHandler(index);
+        playPauseHandler($(".playTrack").index(this));
         // scPlayPause($(".playTrack").index(this))
 
       };
