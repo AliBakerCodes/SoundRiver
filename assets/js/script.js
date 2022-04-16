@@ -5,14 +5,16 @@ var searchEL = document.querySelector('#addBtn');
 var artistInputEL=document.querySelector("#artistInput");
 var titleInputEL = document.querySelector("#titleInput");
 var playlistInptEL= document.querySelector('#playlistInput');
-
+var playAllEl=document.querySelector('#playAll')
+var noTracksMessageEL=document.querySelector('#noTracksMessage')
+var autoplay=document.querySelector("#autoplaySwitch")
 //-------------Variables----------------------------
 const HIDE_CLASS = 'hide';
 var currentPlaylistObj;
 var currentSongObj;
 var newSong;
 var playlistHistory;
-
+var alltracks=[];
 //-------------Objects------------------------------
 function songObj(artist, title,scLInk,spLink,ytLink,ebLink, defaultPlayer) {
   this.artist = artist;
@@ -137,9 +139,37 @@ function previousTrackHandler(index){
   }
 };
 
+function playAllHandler(){
+  alltracks=document.querySelectorAll('iframe');
+  console.log("Alltracks")
+  console.log(alltracks)
+  if(alltracks.length>0){
+    alltracks.forEach(function(iframe,index){
+    var currentEmbed=document.querySelector(`[data-frame-index="${index}"]`);
+    console.log(currentEmbed)
+    if(currentEmbed.src.includes("soundcloud")){
+      scPause(index); 
+    } else if(currentEmbed.src.includes("youtube")) {
+      ytPause(index);
+    }
+    })
+    if(autoplay.checked==false){autoplay.click();}
+    var currentEmbed=document.querySelector(`[data-frame-index="0"]`);
+    console.log(currentEmbed)
+    if(currentEmbed.src.includes("soundcloud")){
+      scPlay(0) 
+    } else if(currentEmbed.src.includes("youtube")) {
+      ytPlay(0);
+  }
+  } else {
+    noTracksMessageEL.classList.remove(HIDE_CLASS)
+  }
+}
+
 // ------------Event Listeners----------------------
 function setEventListeners() {
     searchEL.addEventListener('click',formSubmitHandler);
+    playAllEl.addEventListener('click',playAllHandler);
     currentPlaylistEL.on("click", "button", function (event) {
     console.log("click");
       var target = $(event.currentTarget);
@@ -163,6 +193,12 @@ function setEventListeners() {
       if (target.hasClass("expand")) { //Expand Button Click
         console.log("Expand Button Click");
         var ele=$(target).offsetParent().next()
+        console.log(ele);
+        collapse(ele);
+      }
+      if (target.hasClass("remove")) { //Remove Button Click
+        console.log("Remove Button Click");
+        var ele=$(target).closest('.songCard').remove();
         console.log(ele);
         collapse(ele);
       }
