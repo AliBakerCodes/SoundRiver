@@ -144,73 +144,76 @@
           <section>
             <div class="createPlaylist">
               <input class="form-control inputText grey" id="playlistInput" placeholder="Add Playlist" />
-              <button type="button" id="savePlaylist"><i class="material-icons">playlist_add</i></button>
-              <button type="button" id="playAll"><i class="material-icons">playlist_play</i></button>
+              <button data-tooltip="Add Playlist" type="button" id="savePlaylist"><i class="material-icons">playlist_add</i></button>
+              <button data-tooltip="Play All" type="button" id="playAll"><i class="material-icons">playlist_play</i></button>
             </div>
             <ul id ="currentPlaylist" class="collection with-header">
               <!-- <li class="collection-header"><h4>Playlist</h4></li> -->
               <div class="songCard">
                 <li class="collection-item mainSong">
-                  <div><button type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
-                  <div><button type="button" class="playTrack"><i class="material-icons">play_arrow</i><i class="material-icons">pause</i></button></div>
+                  <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
+                  <div><button title="Play / Pause" type="button" class="playTrack"><i class="material-icons">play_arrow</i><i class="material-icons">pause</i></button></div>
                   <!-- <div><button type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div>   -->
-                  <div><button type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
+                  <div><button title="Next" type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
                   <div class="artist-title"><span data-artist="artist">Artist</span> - <span data-title="title">Title</span></div>
-                  <div><button type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
-                  <div><button type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
-                  <div><button type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
-                  <div><button type="button" class="event"><i class="material-icons">event</i></button></div>
-                  <div><button type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
-                  <div><button type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
+                  <div><button title="SoundCloud" type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
+                  <div><button title="Spotify" type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
+                  <div><button title="YouTube" type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
+                  <div><button title="Eventbrite" type="button" class="event"><i class="material-icons">event</i></button></div>
+                  <div><button title="Delete" type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
+                  <div><button title="Expand" type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
                 </li>
                 <div class="collapsible hide">
                   <li class="collection-item card-expand">
                     <div class="player" ><iframe data-frame-index="0" id="sc-0" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
                       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//kodak-black/super-gremlin&{auto_play}">
                     </iframe></div>
-                    <div><button type="button" class="share"><i class="material-icons">share</i></button></div>
+                    <div class="eventbrite-content"></div>
+                    <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
                   </li>
                 </div>
               </div>
               <div class="songCard">
                 <li class="collection-item mainSong">
-                  <div><button type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
-                  <div><button type="button" class="playTrack"><i class="material-icons">play_arrow</i><i class="material-icons">pause</i></button></div>
+                  <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
+                  <div><button title="Play / Pause" type="button" class="playTrack"><i class="material-icons">play_arrow</i><i class="material-icons">pause</i></button></div>
                   <!-- <div><button type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div> -->
-                  <div><button type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
+                  <div><button title="Next" type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
                   <div class="artist-title"><span data-artist="artist">Artist</span> - <span data-title="title">Title</span></div>
-                  <div><button type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
-                  <div><button type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
-                  <div><button type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
-                  <div><button type="button" class="event"><i class="material-icons">event</i></button></div>
-                  <div><button type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
-                  <div><button type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
+                  <div><button title="SoundCloud" type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
+                  <div><button title="Spotify" type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
+                  <div><button title="YouTube" type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
+                  <div><button title="Eventbrite" type="button" class="event"><i class="material-icons">event</i></button></div>
+                  <div><button title="Delete" type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
+                  <div><button title="Expand" type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
                 </li>
                 <div class="collapsible hide">
                   <li class="collection-item card-expand">
                     <div class="player" ><iframe data-frame-index="1" style="border-radius:12px" src="https://open.spotify.com/embed/track/1Y5Jvi3eLi4Chwqch9GMem?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-                    <div><button type="button" class="share"><i class="material-icons">share</i></button></div>
+                    <div class="eventbrite-content"></div>
+                    <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
                   </li>
                 </div>
               </div>
               <div class="songCard">
                 <li class="collection-item mainSong">
-                  <div><button type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
-                  <div><button type="button" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
-                  <div><button type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div>
-                  <div><button type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
+                  <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
+                  <div><button title="Play" type="button" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
+                  <div><button title="Pause" type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div>
+                  <div><button title="Next" type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
                   <div class="artist-title"><span data-artist="artist">Artist</span> - <span data-title="title">Title</span></div>
-                  <div><button type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
-                  <div><button type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
-                  <div><button type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
-                  <div><button type="button" class="event"><i class="material-icons">event</i></button></div>
-                  <div><button type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
-                  <div><button type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
+                  <div><button title="SoundCloud" type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
+                  <div><button title="Spotify" type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
+                  <div><button title="YouTube" type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
+                  <div><button title="Eventbrite" type="button" class="event"><i class="material-icons">event</i></button></div>
+                  <div><button title="Delete" type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
+                  <div><button title="Expand" type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
                 </li>
                 <div class="collapsible hide">
                   <li class="collection-item card-expand">
                     <div class="player" data-index=""><iframe class="youtube" data-yt-index="0" data-frame-index="2" id="yt-0" width="560" height="315" src="https://www.youtube.com/embed/kiB9qk4gnt4?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" style="border: solid 4px #37474F" allowfullscreen></iframe></div>
-                    <div><button type="button" class="share"><i class="material-icons">share</i></button></div>
+                    <div class="eventbrite-content"></div>
+                    <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
                   </li>
                 </div>
               </div>
