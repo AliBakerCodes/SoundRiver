@@ -16,7 +16,7 @@ var newSong;
 var playlistHistory;
 var alltracks = [];
 //-------------Objects------------------------------
-function songObj(artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink) {
+function songObj(artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink, amlink) {
   this.artist = artist;
   this.title = title;
   this.scLInk = scLInk;
@@ -27,10 +27,15 @@ function songObj(artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, m
   this.mbid = mbid;
   this.sklink = sklink;
   this.hplink = hplink;
+  this.amlink = amlink;
 }
 
-function playlistObj(name, songs) {
-  (this.name = name), (this.songs = songs);
+function playlistObj(name, songs, like, order) {
+  this.name = name; 
+  this.songs = songs;
+  this.like=like;
+  this.order=order
+
 }
 
 // ------------Init Function------------------------
@@ -58,11 +63,11 @@ function createPlaylist() {
 }
 
 function createSong(
-  artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink
+  artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
 ) {
   newSong="";
   newSong = new songObj(
-    artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink
+    artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
   );
   console.log("Creating Song");
   console.log(newSong);
@@ -71,6 +76,12 @@ function createSong(
 function addSong() {
   currentPlaylistObj["songs"].push(newSong);
   console.log("Adding to Playlist");
+  console.log(currentPlaylistObj);
+}
+
+function removeSong(index) {
+  currentPlaylistObj.splice(index,1);
+  console.log("Removing Song from playlist");
   console.log(currentPlaylistObj);
 }
 
@@ -231,6 +242,7 @@ function setEventListeners() {
     if (target.hasClass("remove")) {
       //Remove Button Click
       console.log("Remove Button Click");
+      removeSong($(".remove").index(this));
       var ele = $(target).closest(".songCard").remove();
     }
     if (target.hasClass("share")) {

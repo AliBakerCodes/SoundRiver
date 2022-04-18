@@ -32,6 +32,7 @@ var getArtist = async function(mbid){
          var artistURLType=relation.type
          if (artistURL.includes('songkick')){newSong['sklink']=relation.url.resource}
          if (artistURLType.includes('official homepage')){newSong['hplink']=relation.url.resource}
+         if (artistURLType.includes('purchase for download')){newSong['amlink']=relation.url.resource}
      });
      
  }
