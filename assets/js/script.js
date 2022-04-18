@@ -1,6 +1,7 @@
 // -----------Main JavaScript. All Global JS goes here------------------------------
 // ------------Query Selectors----------------------
 var currentPlaylistEL = $("#currentPlaylist");
+var currentPLUL = document.querySelector('#currentPlaylist')
 var searchEL = document.querySelector("#addBtn");
 var artistInputEL = document.querySelector("#artistInput");
 var titleInputEL = document.querySelector("#titleInput");
@@ -8,18 +9,22 @@ var playlistInptEL = document.querySelector("#playlistInput");
 var playAllEl = document.querySelector("#playAll");
 var noTracksMessageEL = document.querySelector("#noTracksMessage");
 var autoplay = document.querySelector("#autoplaySwitch");
+var playlistHistoryEl=document.querySelector('#playlistHistory');
+var addPlaylistEl=document.querySelector('#savePlaylist');
+var playlistHistoryEl2=$("#playlistHistory");
+
 //-------------Variables----------------------------
 const HIDE_CLASS = "hide";
 var currentPlaylistObj;
 var currentSongObj;
 var newSong;
-var playlistHistory;
+var playlistHistory=[];
 var alltracks = [];
 //-------------Objects------------------------------
-function songObj(artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink, amlink) {
+function songObj(artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink, amlink) {
   this.artist = artist;
   this.title = title;
-  this.scLInk = scLInk;
+  this.scLink = scLink;
   this.spLink = spLink;
   this.ytLink = ytLink;
   this.ebLink = ebLink;
@@ -40,9 +45,11 @@ function playlistObj(name, songs, like, order) {
 
 // ------------Init Function------------------------
 function init() {
+  getPlaylistHistory()
+  renderPlaylistHistory()
   createPlaylist();
   setEventListeners();
-  scEvents();
+  
 }
 
 //-------------Functions----------------------------
@@ -63,14 +70,36 @@ function createPlaylist() {
 }
 
 function createSong(
-  artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
+  artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
 ) {
   newSong="";
   newSong = new songObj(
-    artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
+    artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
   );
   console.log("Creating Song");
   console.log(newSong);
+}
+
+function storePlayistHistory() {
+  //Json stringify and store to localStorage
+  localStorage.setItem("storedPlaylistHistory", JSON.stringify(playlistHistory));
+}
+
+function getPlaylistHistory() {
+  //Check if there is a stored PlaylistHistory in localStorage. If so, get it. If not, initialize the Playlist History
+  playlistHistory = JSON.parse(localStorage.getItem("storedPlaylistHistory"));
+  if (!playlistHistory) {
+    playlistHistory = [];
+  }
+    
+}
+function removeHistory(index) {
+  playlistHistory.splice(index,1);
+  console.log("Removing Playlist from History");
+  console.log(playlistHistory);
+  storePlayistHistory();
+  getPlaylistHistory()
+  renderPlaylistHistory();
 }
 
 function addSong() {
@@ -80,12 +109,12 @@ function addSong() {
 }
 
 function removeSong(index) {
-  currentPlaylistObj.splice(index,1);
+  currentPlaylistObj["songs"].splice(index,1);
   console.log("Removing Song from playlist");
   console.log(currentPlaylistObj);
 }
 
-function formSubmitHandler(event) {
+var formSubmitHandler = async function(event) {
   createSong(
     artistInputEL.value,
     titleInputEL.value,
@@ -95,8 +124,11 @@ function formSubmitHandler(event) {
   artistTitleString = artistInputEL.value.replace(" ", "+"); + "+" + titleInputEL.value.replace(" ", "+");
   artistTitleString = artistTitleString.trim();
   console.log("Artist Search String: " + artistString);
-  getMBID(artistString);
-  // addSong();
+  await getMBID(artistString)
+  addSong();
+  newSong['scLink']='kodak-black/super-gremlin';
+  newSong['defaultPlayer']='soundcloud'
+  renderPlaylist(currentPlaylistObj);
 }
 
 function playPauseHandler(index) {
@@ -109,10 +141,8 @@ function playPauseHandler(index) {
     ytPlayPause(index);
   }
   if(currentplayPause.innerHTML.includes('play')){
-    // currentplayPause.innerHTML="";
     currentplayPause.innerHTML=`<i class="material-icons">pause</i>`
   } else {
-    // currentplayPause.innerHTML="";
     currentplayPause.innerHTML=`<i class="material-icons">play_arrow</i>`
   }
 }
@@ -213,11 +243,125 @@ function shareButtonHandler(index){
   share();
 }
 
+function eventButtonHandler(index){
+  if(currentPlaylistObj.songs[index].sklink){
+  window.open(
+    currentPlaylistObj.songs[index].sklink, "_blank");
+  } else {
+    window.alert("No events found");
+  }
+}
+
+function addPlaylistHandler(){
+  currentPlaylistObj['name']=playlistInptEL.value;
+  console.log("Current Playlist");
+  console.log(currentPlaylistObj);
+  playlistHistory.push(currentPlaylistObj);
+  console.log("Playlist History");
+  console.log(playlistHistory);
+  storePlayistHistory();
+  getPlaylistHistory();
+  console.log("Playlist History after store and get");
+  console.log(playlistHistory);
+  renderPlaylistHistory();
+}
+
+function playlistHistoryHandler(name){
+  var playlistToRender
+  for (var index=0; index<playlistHistory.length; index++){
+    if(playlistHistory[index].name==name){
+      console.log("Found Playlist of name:" +name)
+      currentPlaylistObj=playlistHistory[index];
+      renderPlaylist(currentPlaylistObj);
+    }
+  }
+}
+
+//---------Render playlist------------
+function renderPlaylist(playlistOBJ){
+  console.log("Playlist OBJ to render:")
+  console.log(playlistOBJ);
+  currentPLUL.innerHTML="";
+  playlistInptEL.value=playlistOBJ.name;
+  console.log("Current list inner:" + currentPlaylistEL.innerHTML)
+  console.log("Songs to Render");
+  console.log(playlistOBJ.songs);
+  console.log(playlistOBJ.songs.length)
+  for(var index=0;index<playlistOBJ.songs.length;index++){
+  //     console.log("Song: " + song.artist + " " + song.title);
+  //     songs.forEach(element => {
+  //         console.log(element)
+  //     });
+      console.log("HALP")
+      console.log(playlistOBJ.songs[index]);
+      song=playlistOBJ.songs[index];
+      var songCard = document.createElement('div');
+      var scIndex=document.querySelectorAll('iframe[class~="soundcloud"]').length
+      console.log("SCIndex:");
+      console.log(scIndex)
+      songCard.classList.add('songCard');
+      songCard.innerHTML=`<li class="collection-item mainSong">
+      <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
+      <div><button title="Play / Pause" type="button" data-playid="${index}" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
+      <!-- <div><button type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div>   -->
+      <div><button title="Next" type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
+      <div class="artist-title"><span data-artist="artist">${song.artist}</span> - <span data-title="title">${song.title}</span></div>
+      <div><button title="SoundCloud" type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
+      <div><button title="Spotify" type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
+      <div><button title="YouTube" type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
+      <div><button title="Eventbrite" type="button" class="event"><i class="material-icons">event</i></button></div>
+      <div><button title="Delete" type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
+      <div><button title="Expand" type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
+    </li>
+    <div class="collapsible hide">
+      <li class="collection-item card-expand">
+        <div class="player"><iframe data-sc-index="${scIndex}" class="soundcloud" data-frame-index="${index}" id="sc-${scIndex}" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
+        </iframe></div>
+        <div class="eventbrite-content">
+          <table class="responsive highlight">
+            <tbody>
+                <tr><td><th>Artist</th></td><td>Kodak Black</td></tr>
+                <tr><td><th>Homepage</th></td><td><a href="${song.hplink}">${song.hplink}/</a></td></tr>
+                <tr><td><th>Buy</th></td><td><a href="${song.amlink}">${song.amlink}</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
+      </li>
+    </div>`
+    currentPLUL.append(songCard);
+  };
+  scEvents();
+}
+
+function renderPlaylistHistory(){
+  playlistHistoryEl.innerHTML="";
+  for (var index=0; index<playlistHistory.length;index++){
+    var playlist=playlistHistory[index];
+    var playlistLi=document.createElement('li');
+    playlistLi.classList.add('playlistRow');
+    playlistLi.innerHTML=`<a href="#" class="playlistCol">${playlist.name}</a>
+  <div>
+    <button title="Favorite" class="favoriteHistory"><span class="material-icons favIcon">
+      favorite_border
+    </span></button>
+    <button title="Share" class="shareHistory"><span class="material-icons shareIcon">
+      ios_share
+    </span></button>
+    <button title="Delete" class="removeHistory"><span class="material-icons deleteIcon">
+      delete_outline
+    </span></button>
+  </div>`
+    playlistHistoryEl.append(playlistLi)
+  }
+}
 
 // ------------Event Listeners----------------------
 function setEventListeners() {
   searchEL.addEventListener("click", formSubmitHandler);
   playAllEl.addEventListener("click", playAllHandler);
+  addPlaylistEl.addEventListener("click",addPlaylistHandler)
   currentPlaylistEL.on("click", "button", function (event) {
     console.log("click");
     var target = $(event.currentTarget);
@@ -254,6 +398,33 @@ function setEventListeners() {
       //Share Button Click
       console.log("Share Button Click");
       shareButtonHandler($(".share").index(this));
+    }
+    if (target.hasClass("event")) {
+      //Event Button Click
+      console.log("Event Button Click");
+      eventButtonHandler($(".event").index(this));
+    }
+  });
+  playlistHistoryEl2.on("click", "a", function (event) {
+    event.preventDefault();
+    console.log("History link click");
+    var target = $(event.currentTarget);
+    var index = target.index(this);
+    console.log(target);
+    console.log(target[0].innerText)
+    playlistHistoryHandler(target[0].innerText)
+  });
+  playlistHistoryEl2.on("click", "button", function (event) {
+    event.preventDefault();
+    console.log("History button click");
+    var target = $(event.currentTarget);
+    var index = target.index(this);
+    console.log(target);
+    if (target.hasClass("removeHistory")) {
+      //Remove Button Click
+      console.log("History Remove Button Click");
+      removeHistory($(".removeHistory").index(this));
+      var ele = $(target).closest(".playlistRow").remove();
     }
   });
 }
