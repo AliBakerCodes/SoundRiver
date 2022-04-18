@@ -1,6 +1,7 @@
 // -----------Main JavaScript. All Global JS goes here------------------------------
 // ------------Query Selectors----------------------
 var currentPlaylistEL = $("#currentPlaylist");
+var currentPLUL = document.querySelector('#currentPlaylist')
 var searchEL = document.querySelector("#addBtn");
 var artistInputEL = document.querySelector("#artistInput");
 var titleInputEL = document.querySelector("#titleInput");
@@ -80,7 +81,7 @@ function addSong() {
 }
 
 function removeSong(index) {
-  currentPlaylistObj.splice(index,1);
+  currentPlaylistObj["songs"].splice(index,1);
   console.log("Removing Song from playlist");
   console.log(currentPlaylistObj);
 }
@@ -95,11 +96,11 @@ var formSubmitHandler = async function(event) {
   artistTitleString = artistInputEL.value.replace(" ", "+"); + "+" + titleInputEL.value.replace(" ", "+");
   artistTitleString = artistTitleString.trim();
   console.log("Artist Search String: " + artistString);
-  await getMBID(artistString).then( function (){
+  await getMBID(artistString)
   addSong();
   newSong['scLink']='kodak-black/super-gremlin';
   newSong['defaultPlayer']='soundcloud'
-  renderPlaylist(currentPlaylistObj);});
+  renderPlaylist(currentPlaylistObj);
 }
 
 function playPauseHandler(index) {
@@ -217,7 +218,8 @@ function shareButtonHandler(index){
 function renderPlaylist(playlistOBJ){
   console.log("Playlist OBJ to render:")
   console.log(playlistOBJ);
-  currentPlaylistEL.innerHTML="";
+  currentPLUL.innerHTML="";
+  console.log("Current list inner:" + currentPlaylistEL.innerHTML)
   console.log("Songs to Render");
   console.log(playlistOBJ.songs);
   console.log(playlistOBJ.songs.length)
@@ -230,10 +232,13 @@ function renderPlaylist(playlistOBJ){
       console.log(playlistOBJ.songs[index]);
       song=playlistOBJ.songs[index];
       var songCard = document.createElement('div');
+      var scIndex=document.querySelectorAll('iframe[class~="soundcloud"]').length
+      console.log("SCIndex:");
+      console.log(scIndex)
       songCard.classList.add('songCard');
       songCard.innerHTML=`<li class="collection-item mainSong">
       <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
-      <div><button title="Play / Pause" type="button" data-playid="0" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
+      <div><button title="Play / Pause" type="button" data-playid="${index}" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
       <!-- <div><button type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div>   -->
       <div><button title="Next" type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
       <div class="artist-title"><span data-artist="artist">${song.artist}</span> - <span data-title="title">${song.title}</span></div>
@@ -246,7 +251,7 @@ function renderPlaylist(playlistOBJ){
     </li>
     <div class="collapsible hide">
       <li class="collection-item card-expand">
-        <div class="player"><iframe data-sc-index="0" class="soundcloud" data-frame-index="${index}" id="sc-0" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        <div class="player"><iframe data-sc-index="${scIndex}" class="soundcloud" data-frame-index="${index}" id="sc-${scIndex}" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
           src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
         </iframe></div>
         <div class="eventbrite-content">
@@ -261,7 +266,7 @@ function renderPlaylist(playlistOBJ){
         <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
       </li>
     </div>`
-    currentPlaylistEL.append(songCard);
+    currentPLUL.append(songCard);
   };
 }
 
