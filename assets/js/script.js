@@ -43,7 +43,7 @@ function playlistObj(name, songs, like, order) {
 function init() {
   createPlaylist();
   setEventListeners();
-  scEvents();
+  
 }
 
 //-------------Functions----------------------------
@@ -268,6 +268,7 @@ function renderPlaylist(playlistOBJ){
     </div>`
     currentPLUL.append(songCard);
   };
+  scEvents();
 }
 
 
