@@ -9,12 +9,16 @@ var playlistInptEL = document.querySelector("#playlistInput");
 var playAllEl = document.querySelector("#playAll");
 var noTracksMessageEL = document.querySelector("#noTracksMessage");
 var autoplay = document.querySelector("#autoplaySwitch");
+var playlistHistoryEl=document.querySelector('#playlistHistory');
+var addPlaylistEl=document.querySelector('#savePlaylist');
+var playlistHistoryEl2=$("#playlistHistory");
+
 //-------------Variables----------------------------
 const HIDE_CLASS = "hide";
 var currentPlaylistObj;
 var currentSongObj;
 var newSong;
-var playlistHistory;
+var playlistHistory=[];
 var alltracks = [];
 //-------------Objects------------------------------
 function songObj(artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink, amlink) {
@@ -41,6 +45,8 @@ function playlistObj(name, songs, like, order) {
 
 // ------------Init Function------------------------
 function init() {
+  getPlaylistHistory()
+  renderPlaylistHistory()
   createPlaylist();
   setEventListeners();
   
@@ -72,6 +78,20 @@ function createSong(
   );
   console.log("Creating Song");
   console.log(newSong);
+}
+
+function storePlayistHistory() {
+  //Json stringify and store to localStorage
+  localStorage.setItem("storedPlaylistHistory", JSON.stringify(playlistHistory));
+}
+
+function getPlaylistHistory() {
+  //Check if there is a stored PlaylistHistory in localStorage. If so, get it. If not, initialize the Playlist History
+  playlistHistory = JSON.parse(localStorage.getItem("storedPlaylistHistory"));
+  if (!playlistHistory) {
+    playlistHistory = [];
+  }
+    
 }
 
 function addSong() {
@@ -223,6 +243,29 @@ function eventButtonHandler(index){
     window.alert("No events found");
   }
 }
+
+function addPlaylistHandler(){
+  currentPlaylistObj['name']=playlistInptEL.value;
+  console.log("Current Playlist");
+  console.log(currentPlaylistObj);
+  playlistHistory.push(currentPlaylistObj);
+  console.log("Playlist History");
+  console.log(playlistHistory);
+  storePlayistHistory();
+  getPlaylistHistory();
+  console.log("Playlist History after store and get");
+  console.log(playlistHistory);
+  renderPlaylistHistory();
+}
+
+function removeHistory(index) {
+  playlistHistory.splice(index,1);
+  console.log("Removing Playlist from History");
+  console.log(playlistHistory);
+  storePlayistHistory();
+  getPlaylistHistory()
+  renderPlaylistHistory();
+}
 //---------Render playlist------------
 function renderPlaylist(playlistOBJ){
   console.log("Playlist OBJ to render:")
@@ -280,11 +323,33 @@ function renderPlaylist(playlistOBJ){
   scEvents();
 }
 
+function renderPlaylistHistory(){
+  playlistHistoryEl.innerHTML="";
+  for (var index=0; index<playlistHistory.length;index++){
+    var playlist=playlistHistory[index];
+    var playlistLi=document.createElement('li');
+    playlistLi.classList.add('playlistRow');
+    playlistLi.innerHTML=`<a href="#" class="playlistCol">${playlist.name}</a>
+  <div>
+    <button title="Favorite" class="favoriteHistory"><span class="material-icons favIcon">
+      favorite_border
+    </span></button>
+    <button title="Share" class="shareHistory"><span class="material-icons shareIcon">
+      ios_share
+    </span></button>
+    <button title="Delete" class="removeHistory"><span class="material-icons deleteIcon">
+      delete_outline
+    </span></button>
+  </div>`
+    playlistHistoryEl.append(playlistLi)
+  }
+}
 
 // ------------Event Listeners----------------------
 function setEventListeners() {
   searchEL.addEventListener("click", formSubmitHandler);
   playAllEl.addEventListener("click", playAllHandler);
+  addPlaylistEl.addEventListener("click",addPlaylistHandler)
   currentPlaylistEL.on("click", "button", function (event) {
     console.log("click");
     var target = $(event.currentTarget);
@@ -326,6 +391,26 @@ function setEventListeners() {
       //Event Button Click
       console.log("Event Button Click");
       eventButtonHandler($(".event").index(this));
+    }
+  });
+  playlistHistoryEl2.on("click", "a", function (event) {
+    event.preventDefault();
+    console.log("History link click");
+    var target = $(event.currentTarget);
+    var index = target.index(this);
+    console.log(target);
+  });
+  playlistHistoryEl2.on("click", "button", function (event) {
+    event.preventDefault();
+    console.log("History button click");
+    var target = $(event.currentTarget);
+    var index = target.index(this);
+    console.log(target);
+    if (target.hasClass("removeHistory")) {
+      //Remove Button Click
+      console.log("History Remove Button Click");
+      removeHistory($(".removeHistory").index(this));
+      var ele = $(target).closest(".playlistRow").remove();
     }
   });
 }
