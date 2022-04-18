@@ -121,14 +121,17 @@ var formSubmitHandler = async function(event) {
   );
   var artistString = artistInputEL.value.replace(" ", "+");
   artistString = artistString.trim();
-  artistTitleString = artistInputEL.value.replace(" ", "+"); + "+" + titleInputEL.value.replace(" ", "+");
+  artistTitleString = artistInputEL.value.replace(" ", "+") + "+" + titleInputEL.value.replace(" ", "+");
   artistTitleString = artistTitleString.trim();
   console.log("Artist Search String: " + artistString);
-  await getMBID(artistString)
-  addSong();
-  newSong['scLink']='kodak-black/super-gremlin';
-  newSong['defaultPlayer']='soundcloud'
-  renderPlaylist(currentPlaylistObj);
+  console.log("Artist and Title: " + artistTitleString);
+
+  await getTrack(artistTitleString);
+  // await getMBID(artistString)
+  // addSong();
+  // newSong['scLink']='kodak-black/super-gremlin';
+  // newSong['defaultPlayer']='soundcloud'
+  // renderPlaylist(currentPlaylistObj);
 }
 
 function playPauseHandler(index) {
