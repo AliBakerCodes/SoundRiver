@@ -101,19 +101,28 @@ function formSubmitHandler(event) {
 
 function playPauseHandler(index) {
   var currentEmbed = document.querySelector(`[data-frame-index="${index}"]`);
-  console.log(currentEmbed);
-  stopAllTracks();
+  var currentplayPause = document.querySelector(`[data-playid="${index}"]`);
+  stopAllTracks(index);
   if (currentEmbed.src.includes("soundcloud")) {
     scPlayPause(index);
   } else if (currentEmbed.src.includes("youtube")) {
     ytPlayPause(index);
   }
+  if(currentplayPause.innerHTML.includes('play')){
+    // currentplayPause.innerHTML="";
+    currentplayPause.innerHTML=`<i class="material-icons">pause</i>`
+  } else {
+    // currentplayPause.innerHTML="";
+    currentplayPause.innerHTML=`<i class="material-icons">play_arrow</i>`
+  }
 }
+
 function nextTrackHandler(index) {
   console.log("Next Track Index: " + index);
   var numTracks = document.querySelectorAll(".player").length;
   console.log(numTracks);
   if (index + 1 > numTracks - 1) {
+    stopAllTracks();
     return;
   }
   var currentEmbed = document.querySelector(`[data-frame-index="${index}"]`);
@@ -122,33 +131,33 @@ function nextTrackHandler(index) {
   var nextEmbed = document.querySelector(`[data-frame-index="${index + 1}"]`);
   console.log("Next Embed");
   console.log(nextEmbed);
-  if (nextEmbed.src.includes("soundcloud")) {
-    scPlay(index + 1);
-  } else if (nextEmbed.src.includes("youtube")) {
-    ytPlay(index + 1);
-  } else if (nextEmbed.src.includes("spotify")) {
+  if (nextEmbed.src.includes("spotify")) {
     nextTrackHandler(index + 1);
+  } else if (nextEmbed.src.includes("spotify") && (index + 1 > numTracks - 1)) {
+    stopAllTracks();
+    return;
+  } else {
+    playPauseHandler(index+1);
   }
 }
 
 function previousTrackHandler(index) {
   console.log("Previous Track Index: " + index);
   var numTracks = document.querySelectorAll(".player").length;
-  console.log(numTracks);
   if (index - 1 < 0) {
+    stopAllTracks();
     return;
   }
   var currentEmbed = document.querySelector(`[data-frame-index="${index}"]`);
-  console.log(currentEmbed);
   stopAllTracks();
   var prevEmbed = document.querySelector(`[data-frame-index="${index - 1}"]`);
-  console.log(prevEmbed);
-  if (prevEmbed.src.includes("soundcloud")) {
-    scPlay(index - 1);
-  } else if (prevEmbed.src.includes("youtube")) {
-    ytPlay(index - 1);
-  } else if (prevEmbed.src.includes("spotify")) {
+  if (prevEmbed.src.includes("spotify")) {
     previousTrackHandler(index - 1);
+  } else if (prevEmbed.src.includes("spotify") && (index - 1 < 0)) {
+    stopAllTracks();
+    return;
+  } else {
+    playPauseHandler(index-1);
   }
 }
 
@@ -160,33 +169,30 @@ function playAllHandler() {
       autoplay.click();
     }
     var currentEmbed = document.querySelector(`[data-frame-index="0"]`);
-    console.log(currentEmbed);
-    if (currentEmbed.src.includes("soundcloud")) {
-      scPlay(0);
-    } else if (currentEmbed.src.includes("youtube")) {
-      ytPlay(0);
-    }
+    playPauseHandler(0);
   } else {
     noTracksMessageEL.classList.remove(HIDE_CLASS);
   }
 }
 
-function stopAllTracks(){
+function stopAllTracks(exception){
   console.log("Stopping All")
   alltracks = document.querySelectorAll("iframe");
   console.log("Alltracks");
   console.log(alltracks);
   if (alltracks.length > 0) {
     alltracks.forEach(function (iframe, index) {
-      var currentEmbed = document.querySelector(
-        `[data-frame-index="${index}"]`
-      );
-      console.log(currentEmbed);
-      if (currentEmbed.src.includes("soundcloud")) {
-        scPause(index);
-      } else if (currentEmbed.src.includes("youtube")) {
-        ytPause(index);
-      }
+      if(index!=exception){
+        var currentEmbed = document.querySelector(`[data-frame-index="${index}"]`);
+        var currentplayPause = document.querySelector(`[data-playid="${index}"]`);
+        console.log(currentEmbed);
+        if (currentEmbed.src.includes("soundcloud")) {
+          scPause(index);
+        } else if (currentEmbed.src.includes("youtube")) {
+          ytPause(index);
+        }
+        currentplayPause.innerHTML=`<i class="material-icons">play_arrow</i>`
+    }
     });
   }
 }
@@ -236,7 +242,6 @@ function setEventListeners() {
       //Expand Button Click
       console.log("Expand Button Click");
       var ele = $(target).offsetParent().next();
-      console.log(ele);
       collapse(ele);
     }
     if (target.hasClass("remove")) {
