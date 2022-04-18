@@ -16,10 +16,10 @@ var newSong;
 var playlistHistory;
 var alltracks = [];
 //-------------Objects------------------------------
-function songObj(artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink, amlink) {
+function songObj(artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink,hplink, amlink) {
   this.artist = artist;
   this.title = title;
-  this.scLInk = scLInk;
+  this.scLink = scLink;
   this.spLink = spLink;
   this.ytLink = ytLink;
   this.ebLink = ebLink;
@@ -63,11 +63,11 @@ function createPlaylist() {
 }
 
 function createSong(
-  artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
+  artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
 ) {
   newSong="";
   newSong = new songObj(
-    artist, title, scLInk, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
+    artist, title, scLink, spLink, ytLink, ebLink, defaultPlayer, mbid, sklink, hplink, amlink
   );
   console.log("Creating Song");
   console.log(newSong);
@@ -85,7 +85,7 @@ function removeSong(index) {
   console.log(currentPlaylistObj);
 }
 
-function formSubmitHandler(event) {
+var formSubmitHandler = async function(event) {
   createSong(
     artistInputEL.value,
     titleInputEL.value,
@@ -95,8 +95,11 @@ function formSubmitHandler(event) {
   artistTitleString = artistInputEL.value.replace(" ", "+"); + "+" + titleInputEL.value.replace(" ", "+");
   artistTitleString = artistTitleString.trim();
   console.log("Artist Search String: " + artistString);
-  getMBID(artistString);
-  // addSong();
+  await getMBID(artistString).then( function (){
+  addSong();
+  newSong['scLink']='kodak-black/super-gremlin';
+  newSong['defaultPlayer']='soundcloud'
+  renderPlaylist(currentPlaylistObj);});
 }
 
 function playPauseHandler(index) {
@@ -109,10 +112,8 @@ function playPauseHandler(index) {
     ytPlayPause(index);
   }
   if(currentplayPause.innerHTML.includes('play')){
-    // currentplayPause.innerHTML="";
     currentplayPause.innerHTML=`<i class="material-icons">pause</i>`
   } else {
-    // currentplayPause.innerHTML="";
     currentplayPause.innerHTML=`<i class="material-icons">play_arrow</i>`
   }
 }
@@ -211,6 +212,57 @@ function shareButtonHandler(index){
     }
   }
   share();
+}
+//---------Render playlist------------
+function renderPlaylist(playlistOBJ){
+  console.log("Playlist OBJ to render:")
+  console.log(playlistOBJ);
+  currentPlaylistEL.innerHTML="";
+  console.log("Songs to Render");
+  console.log(playlistOBJ.songs);
+  console.log(playlistOBJ.songs.length)
+  for(var index=0;index<playlistOBJ.songs.length;index++){
+  //     console.log("Song: " + song.artist + " " + song.title);
+  //     songs.forEach(element => {
+  //         console.log(element)
+  //     });
+      console.log("HALP")
+      console.log(playlistOBJ.songs[index]);
+      song=playlistOBJ.songs[index];
+      var songCard = document.createElement('div');
+      songCard.classList.add('songCard');
+      songCard.innerHTML=`<li class="collection-item mainSong">
+      <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
+      <div><button title="Play / Pause" type="button" data-playid="0" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
+      <!-- <div><button type="button" class="pauseTrack"><i class="material-icons">pause</i></button></div>   -->
+      <div><button title="Next" type="button" class="nextTrack"><i class="material-icons">skip_next</i></button></div>
+      <div class="artist-title"><span data-artist="artist">${song.artist}</span> - <span data-title="title">${song.title}</span></div>
+      <div><button title="SoundCloud" type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
+      <div><button title="Spotify" type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
+      <div><button title="YouTube" type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
+      <div><button title="Eventbrite" type="button" class="event"><i class="material-icons">event</i></button></div>
+      <div><button title="Delete" type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
+      <div><button title="Expand" type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
+    </li>
+    <div class="collapsible hide">
+      <li class="collection-item card-expand">
+        <div class="player"><iframe data-sc-index="0" class="soundcloud" data-frame-index="${index}" id="sc-0" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
+        </iframe></div>
+        <div class="eventbrite-content">
+          <table class="responsive highlight">
+            <tbody>
+                <tr><td><th>Artist</th></td><td>Kodak Black</td></tr>
+                <tr><td><th>Homepage</th></td><td><a href="${song.hplink}">${song.hplink}/</a></td></tr>
+                <tr><td><th>Buy</th></td><td><a href="${song.amlink}">${song.amlink}</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
+      </li>
+    </div>`
+    currentPlaylistEL.append(songCard);
+  };
 }
 
 

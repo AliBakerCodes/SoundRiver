@@ -7,16 +7,17 @@ var HEADERS = new Headers({
 });
 
 var getMBID = async function(searchString){
-   console.log("Getting Artist:MBID");
+  //  console.log("Getting Artist:MBID");
     var mbSearch = `${MB_MBID_URL}${searchString}&fmt=json`;
-    console.log("MB search string: " + mbSearch)
+    // console.log("MB search string: " + mbSearch)
     var results= await getApi(mbSearch);;
-    console.log("MBID Results:");
+    // console.log("MBID Results:");
     var artist=results.artists[0];
-    console.log(artist);
+    // console.log(artist);
     newSong['mbid']=artist.id;
-    console.log(newSong.mbid);
-    getArtist(newSong.mbid);
+    // console.log(newSong.mbid);
+    await getArtist(newSong.mbid);
+    return
 }
 
 var getArtist = async function(mbid){
@@ -24,10 +25,10 @@ var getArtist = async function(mbid){
      var mbSearch = `${MB_ARTIST_URL}${mbid}?inc=url-rels&fmt=json`
      console.log("MB search string: " + mbSearch)
      var artist= await getApi(mbSearch);
-     console.log("Artist Results:")
-     console.log(artist)
+    //  console.log("Artist Results:")
+    //  console.log(artist)
      artist.relations.forEach(relation => {
-         console.log(relation)
+        //  console.log(relation)
          var artistURL=relation.url.resource
          var artistURLType=relation.type
          if (artistURL.includes('songkick')){newSong['sklink']=relation.url.resource}
