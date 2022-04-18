@@ -214,6 +214,15 @@ function shareButtonHandler(index){
   }
   share();
 }
+
+function eventButtonHandler(index){
+  if(currentPlaylistObj.songs[index].sklink){
+  window.open(
+    currentPlaylistObj.songs[index].sklink, "_blank");
+  } else {
+    window.alert("No events found");
+  }
+}
 //---------Render playlist------------
 function renderPlaylist(playlistOBJ){
   console.log("Playlist OBJ to render:")
@@ -312,6 +321,11 @@ function setEventListeners() {
       //Share Button Click
       console.log("Share Button Click");
       shareButtonHandler($(".share").index(this));
+    }
+    if (target.hasClass("event")) {
+      //Event Button Click
+      console.log("Event Button Click");
+      eventButtonHandler($(".event").index(this));
     }
   });
 }
