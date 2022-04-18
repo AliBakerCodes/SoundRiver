@@ -180,7 +180,21 @@ function stopAllTracks(){
   }
 }
 
-
+function shareButtonHandler(index){
+  var currentEmbed = document.querySelector(`[data-frame-index="${index}"]`);
+  console.log(currentEmbed.src)
+  async function share() {
+    try {
+      await navigator.share({
+        text: 'Sent from SoundRiver',
+        url: currentEmbed.src
+      })
+    } catch (error) {
+      console.log('Sharing failed!', error)
+    }
+  }
+  share();
+}
 
 
 // ------------Event Listeners----------------------
@@ -218,8 +232,11 @@ function setEventListeners() {
       //Remove Button Click
       console.log("Remove Button Click");
       var ele = $(target).closest(".songCard").remove();
-      console.log(ele);
-      collapse(ele);
+    }
+    if (target.hasClass("share")) {
+      //Share Button Click
+      console.log("Share Button Click");
+      shareButtonHandler($(".share").index(this));
     }
   });
 }
