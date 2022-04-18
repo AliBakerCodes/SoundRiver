@@ -82,9 +82,9 @@ function formSubmitHandler(event) {
   var artistString = artistInputEL.value.replace(" ", "+");
   artistString = artistString.trim();
   artistTitleString = artistInputEL.value.replace(" ", "+"); + "+" + titleInputEL.value.replace(" ", "+");
-  artistTitleString = searchString.trim();
+  artistTitleString = artistTitleString.trim();
   console.log("Artist Search String: " + artistString);
-  getArtist(artistString);
+  getMBID(artistString);
   // addSong();
 }
 
