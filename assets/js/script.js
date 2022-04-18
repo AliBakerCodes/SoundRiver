@@ -93,6 +93,14 @@ function getPlaylistHistory() {
   }
     
 }
+function removeHistory(index) {
+  playlistHistory.splice(index,1);
+  console.log("Removing Playlist from History");
+  console.log(playlistHistory);
+  storePlayistHistory();
+  getPlaylistHistory()
+  renderPlaylistHistory();
+}
 
 function addSong() {
   currentPlaylistObj["songs"].push(newSong);
@@ -258,19 +266,23 @@ function addPlaylistHandler(){
   renderPlaylistHistory();
 }
 
-function removeHistory(index) {
-  playlistHistory.splice(index,1);
-  console.log("Removing Playlist from History");
-  console.log(playlistHistory);
-  storePlayistHistory();
-  getPlaylistHistory()
-  renderPlaylistHistory();
+function playlistHistoryHandler(name){
+  var playlistToRender
+  for (var index=0; index<playlistHistory.length; index++){
+    if(playlistHistory[index].name==name){
+      console.log("Found Playlist of name:" +name)
+      currentPlaylistObj=playlistHistory[index];
+      renderPlaylist(currentPlaylistObj);
+    }
+  }
 }
+
 //---------Render playlist------------
 function renderPlaylist(playlistOBJ){
   console.log("Playlist OBJ to render:")
   console.log(playlistOBJ);
   currentPLUL.innerHTML="";
+  playlistInptEL.value=playlistOBJ.name;
   console.log("Current list inner:" + currentPlaylistEL.innerHTML)
   console.log("Songs to Render");
   console.log(playlistOBJ.songs);
@@ -399,6 +411,8 @@ function setEventListeners() {
     var target = $(event.currentTarget);
     var index = target.index(this);
     console.log(target);
+    console.log(target[0].innerText)
+    playlistHistoryHandler(target[0].innerText)
   });
   playlistHistoryEl2.on("click", "button", function (event) {
     event.preventDefault();
