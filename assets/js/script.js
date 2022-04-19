@@ -264,6 +264,34 @@ function eventButtonHandler(index){
   }
 }
 
+function spotButtonHandler(index){
+  if(currentPlaylistObj.songs[index].spLink){
+  window.open(
+    `https://open.spotify.com/track/${currentPlaylistObj.songs[index].spLink}`, "_blank");
+    } else {
+    window.alert("No events found");
+  }
+}
+
+function soundHandler(index){
+  if(currentPlaylistObj.songs[index].scLink){
+  console.log(`http://www.soundcloud.com/${currentPlaylistObj.songs[index].scLink}`);  
+  window.open(
+    `http://www.soundcloud.com/${currentPlaylistObj.songs[index].scLink}`, "_blank");
+  } else {
+    window.alert("No events found");
+  }
+}
+
+function youButtonHandler(index){
+  if(currentPlaylistObj.songs[index].ytLink){
+  window.open(
+    `https://www.youtube.com/watch?v=${currentPlaylistObj.songs[index].ytLink}`, "_blank");
+  } else {
+    window.alert("No events found");
+  }
+}
+
 function addPlaylistHandler(){
   currentPlaylistObj['name']=playlistInptEL.value;
   console.log("Current Playlist");
@@ -317,7 +345,7 @@ function renderPlaylist(playlistOBJ){
         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
       </iframe></div>`
       } else if(song.defaultPlayer=='youtube'){
-        playerHTML=`<div class="player" data-index="${index}"><iframe class="youtube" data-yt-index="${ytIndex}" data-frame-index="${index}" id="yt-${ytIndex}" width="560" height="315" src="https://www.youtube.com/embed/${song.ytLink}?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" style="border: solid 4px #37474F" allowfullscreen></iframe></div>`
+        playerHTML=`<div class="player" data-index="${index}"><iframe class="youtube" data-yt-index="${ytIndex}" data-frame-index="${index}" id="yt-${ytIndex}" width="560" height="315" src="https://www.youtube.com/embed/${song.ytLink}?enablejsapi=1&origin=https://alibakercodes.github.io/SoundRiver/" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" style="border: solid 4px #37474F" allowfullscreen></iframe></div>`
       }
       songCard.innerHTML=`<li class="collection-item mainSong">
       <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
@@ -424,6 +452,21 @@ function setEventListeners() {
       //Event Button Click
       console.log("Event Button Click");
       eventButtonHandler($(".event").index(this));
+    }
+    if (target.hasClass("sound")) {
+      //you Button Click
+      console.log("sound Button Click");
+      soundHandler($(".sound").index(this));
+    }
+    if (target.hasClass("spot")) {
+      //you Button Click
+      console.log("spot Button Click");
+      spotButtonHandler($(".spot").index(this));
+    }
+    if (target.hasClass("you")) {
+      //you Button Click
+      console.log("you Button Click");
+      youButtonHandler($(".you").index(this));
     }
   });
   playlistHistoryEl2.on("click", "a", function (event) {
