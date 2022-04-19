@@ -59,13 +59,13 @@ The [homepage](https://alibakercodes.github.io/SoundRiver/) presents the followi
 ## Assets:
 
 The following image demonstrates the homepage's appearance and functionality:
-![Homepage](assets/images/screenshot/Homepage.png)
+![Homepage](assets/images/screenshot/soundriver_homepage_screenshot.png)
 
 The following image demonstrates the left section and its functionality:
 ![Leftsection](assets/images/screenshot/Left_with_search.png)
 
 The following image demonstrates the search results page's appearance and functionality:
-![Search result](assets/images/screenshot/Playlist_creation_and_search_result.png)
+![Search result](assets/images/screenshot/soundriver_search_result_screenshot.png)
 
 The following image demonstrates the footer's appearance and functionality:
 ![Footer](assets/images/screenshot/Footer.png)
