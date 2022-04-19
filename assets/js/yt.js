@@ -7,12 +7,10 @@
   
   var ytIframeIds = [];
   var playerobjects=[];
-  var ytIframes = document.querySelectorAll(".youtube");
-  ytIframes.forEach(function(iframe) {
-	  ytIframeIds.push(iframe.id);
-});
+  var autoplay=document.querySelector('#autoplaySwitch').value;
 var player;
   function onYouTubeIframeAPIReady() {
+
     ytIframeIds.forEach(function(iframeId) {
       console.log(iframeId)     
       player= new YT.Player(iframeId, {
@@ -24,10 +22,13 @@ var player;
     });
   }
 
+
   function onPlayerReady(event) {
+    console.log("Player Ready")
     var iframeObject=event.target
     playerobjects.push(iframeObject)
   }
+
   function changeBorderColor(playerStatus) {
     var color;
     if (playerStatus == -1) {
@@ -49,6 +50,11 @@ var player;
   }
   function onPlayerStateChange(event) {
     changeBorderColor(event.data);
+    var player=document.querySelector(`#${event.target.h.id}`)
+    var index=player.getAttribute("data-frame-index")
+    if(autoplay && event.data===0){
+      nextTrackHandler(Number(index));
+    }
   }
 
   function ytPlayPause(index){
@@ -56,7 +62,8 @@ var player;
     var ytIndex=ytFrame.getAttribute("data-yt-index");
     console.log(ytIndex)
     console.log(playerobjects)
-    var targetPlayer=playerobjects[ytIndex]
+    var targetPlayer=playerobjects[ytIndex];
+    console.log(targetPlayer);
     var playerStatus = targetPlayer.getPlayerState();
     console.log("Player Status: " + playerStatus);
     if (playerStatus == -1 || playerStatus == 2 || playerStatus == 5) {
@@ -84,4 +91,18 @@ var player;
     targetPlayer.playVideo();
     var playerStatus = targetPlayer.getPlayerState();
     console.log("Player Status: " + playerStatus);
+  }
+
+  function ytListeners(){
+    playerobjects=[];  
+    var youtube = document.querySelectorAll(".youtube");
+    for (var i = 0; i < youtube.length; i++) {
+      iframeId=youtube[i].id;
+      player= new YT.Player(iframeId, {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
   }

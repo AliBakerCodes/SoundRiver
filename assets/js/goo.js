@@ -15,6 +15,7 @@ var getTrack = async function(searchString) {
     var soundSearch = `${SEARCH_URL}${searchString}+site:soundcloud.com&num=5`
     console.log("Soundcloud search string: " + soundSearch)
     var scResults= await getApi(soundSearch);
+    if(!scResults.organic_results[0].url){scResults= await getApi(soundSearch);}
     console.log(scResults);
     console.log("Getting Track:YouTube")
     console.log("Youtube search string: " + searchString)
@@ -24,6 +25,7 @@ var getTrack = async function(searchString) {
     var spSearch = `${SEARCH_URL}${searchString}+site:spotify.com&num=5`
     console.log("Spotify search string: " + spSearch)
     var spResults= await getApi(spSearch);
+    if(!spResults.organic_results[0].url){spResults= await getApi(spSearch);}
     console.log(spResults);
     console.log("SC Results URL: " + scResults.organic_results[0].url);
     newSong['scLink']=scURL(scResults.organic_results[0].url)
