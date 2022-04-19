@@ -14,6 +14,7 @@ var addPlaylistEl=document.querySelector('#savePlaylist');
 var playlistHistoryEl2=$("#playlistHistory");
 var bizEL=$("#biz");
 var defaultPlayerEl=document.querySelector("#defaultPlayer");
+var spinner=document.querySelector("#spinner")
 
 //-------------Variables----------------------------
 const HIDE_CLASS = "hide";
@@ -117,6 +118,8 @@ function removeSong(index) {
 }
 
 var formSubmitHandler = async function(event) {
+  searchEL.classList.add(HIDE_CLASS);
+  spinner.classList.remove(HIDE_CLASS);
   createSong(
     artistInputEL.value,
     titleInputEL.value,
@@ -135,9 +138,11 @@ var formSubmitHandler = async function(event) {
     console.log("Default Player Youtube")
   } else {
     console.log("Default Player SoundCloud")
-    newsong['defaultPlayer']='soundcloud'
+    newSong['defaultPlayer']='soundcloud'
   }
   addSong();
+  spinner.classList.add(HIDE_CLASS);
+  searchEL.classList.remove(HIDE_CLASS);
   renderPlaylist(currentPlaylistObj);
   artistInputEL.value="";
   titleInputEL.value="";
