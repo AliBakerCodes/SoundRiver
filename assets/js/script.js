@@ -12,6 +12,8 @@ var autoplay = document.querySelector("#autoplaySwitch");
 var playlistHistoryEl=document.querySelector('#playlistHistory');
 var addPlaylistEl=document.querySelector('#savePlaylist');
 var playlistHistoryEl2=$("#playlistHistory");
+var bizEL=$("#biz");
+var defaultPlayerEl=document.querySelector("#defaultPlayer");
 
 //-------------Variables----------------------------
 const HIDE_CLASS = "hide";
@@ -121,14 +123,24 @@ var formSubmitHandler = async function(event) {
   );
   var artistString = artistInputEL.value.replace(" ", "+");
   artistString = artistString.trim();
-  artistTitleString = artistInputEL.value.replace(" ", "+"); + "+" + titleInputEL.value.replace(" ", "+");
+  artistTitleString = artistInputEL.value.replace(" ", "+") + "+" + titleInputEL.value.replace(" ", "+");
   artistTitleString = artistTitleString.trim();
   console.log("Artist Search String: " + artistString);
+  console.log("Artist and Title: " + artistTitleString);
+
+  await getTrack(artistTitleString);
   await getMBID(artistString)
+  if(defaultPlayerEl.checked == true){
+    newSong['defaultPlayer']='youtube'
+    console.log("Default Player Youtube")
+  } else {
+    console.log("Default Player SoundCloud")
+    newsong['defaultPlayer']='soundcloud'
+  }
   addSong();
-  newSong['scLink']='kodak-black/super-gremlin';
-  newSong['defaultPlayer']='soundcloud'
   renderPlaylist(currentPlaylistObj);
+  artistInputEL.value="";
+  titleInputEL.value="";
 }
 
 function playPauseHandler(index) {
@@ -193,12 +205,11 @@ function previousTrackHandler(index) {
 
 function playAllHandler() {
     stopAllTracks();
-    alltracks = document.querySelectorAll("iframe");
+    alltracks = document.querySelectorAll("[data-frame-index]");
     if (alltracks.length > 0) {
     if (autoplay.checked == false) {
       autoplay.click();
     }
-    var currentEmbed = document.querySelector(`[data-frame-index="0"]`);
     playPauseHandler(0);
   } else {
     noTracksMessageEL.classList.remove(HIDE_CLASS);
@@ -207,7 +218,7 @@ function playAllHandler() {
 
 function stopAllTracks(exception){
   console.log("Stopping All")
-  alltracks = document.querySelectorAll("iframe");
+  alltracks = document.querySelectorAll("[data-frame-index]");
   console.log("Alltracks");
   console.log(alltracks);
   if (alltracks.length > 0) {
@@ -219,6 +230,7 @@ function stopAllTracks(exception){
         if (currentEmbed.src.includes("soundcloud")) {
           scPause(index);
         } else if (currentEmbed.src.includes("youtube")) {
+          console.log(index)
           ytPause(index);
         }
         currentplayPause.innerHTML=`<i class="material-icons">play_arrow</i>`
@@ -288,18 +300,25 @@ function renderPlaylist(playlistOBJ){
   console.log(playlistOBJ.songs);
   console.log(playlistOBJ.songs.length)
   for(var index=0;index<playlistOBJ.songs.length;index++){
-  //     console.log("Song: " + song.artist + " " + song.title);
-  //     songs.forEach(element => {
-  //         console.log(element)
-  //     });
+ 
+
       console.log("HALP")
       console.log(playlistOBJ.songs[index]);
       song=playlistOBJ.songs[index];
       var songCard = document.createElement('div');
       var scIndex=document.querySelectorAll('iframe[class~="soundcloud"]').length
+      var ytIndex=document.querySelectorAll('iframe[class~="youtube"]').length
+      var playerHTML;
       console.log("SCIndex:");
       console.log(scIndex)
       songCard.classList.add('songCard');
+      if (song.defaultPlayer=='soundcloud'){
+        playerHTML=`<div class="player" data-index="${index}"><iframe data-sc-index="${scIndex}" class="soundcloud" data-frame-index="${index}" id="sc-${scIndex}" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
+      </iframe></div>`
+      } else if(song.defaultPlayer=='youtube'){
+        playerHTML=`<div class="player" data-index="${index}"><iframe class="youtube" data-yt-index="${ytIndex}" data-frame-index="${index}" id="yt-${ytIndex}" width="560" height="315" src="https://www.youtube.com/embed/${song.ytLink}?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" style="border: solid 4px #37474F" allowfullscreen></iframe></div>`
+      }
       songCard.innerHTML=`<li class="collection-item mainSong">
       <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
       <div><button title="Play / Pause" type="button" data-playid="${index}" class="playTrack"><i class="material-icons">play_arrow</i></button></div>
@@ -309,19 +328,18 @@ function renderPlaylist(playlistOBJ){
       <div><button title="SoundCloud" type="button" class="sound"><i class="fa-brands fa-soundcloud fa-xl"></i></button></div>
       <div><button title="Spotify" type="button" class="spot"><i class="fa-brands fa-spotify fa-xl"></i></button></div>
       <div><button title="YouTube" type="button" class="you"><i class="fa-brands fa-youtube fa-xl"></i></button></div>
-      <div><button title="Eventbrite" type="button" class="event"><i class="material-icons">event</i></button></div>
+      <div><button title="SongKick" type="button" class="event"><i class="material-icons">event</i></button></div>
       <div><button title="Delete" type="button" class="remove"><i class="material-icons">delete_forever</i></button></div>
       <div><button title="Expand" type="button" class="expand"><i class="material-icons">keyboard_arrow_down</i></button></div>
     </li>
     <div class="collapsible hide">
       <li class="collection-item card-expand">
-        <div class="player"><iframe data-sc-index="${scIndex}" class="soundcloud" data-frame-index="${index}" id="sc-${scIndex}" width="500" height="166" scrolling="no" frameborder="no" allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
-        </iframe></div>
+        ${playerHTML}
+        <div><button type="button" class="share"><i class="material-icons">share</i></button></div>
         <div class="eventbrite-content">
           <table class="responsive highlight">
             <tbody>
-                <tr><td><th>Artist</th></td><td>Kodak Black</td></tr>
+                <tr><td><th>Artist</th></td><td>${song.artist}</td></tr>
                 <tr><td><th>Homepage</th></td><td><a href="${song.hplink}">${song.hplink}/</a></td></tr>
                 <tr><td><th>Buy</th></td><td><a href="${song.amlink}">${song.amlink}</a></td></tr>
             </tbody>
@@ -330,10 +348,13 @@ function renderPlaylist(playlistOBJ){
         <div><button title="Share" type="button" class="share"><i class="material-icons">share</i></button></div>
       </li>
     </div>`
+    console.log(songCard.innerHTML)
     currentPLUL.append(songCard);
   };
   scEvents();
+  ytListeners(); 
 }
+
 
 function renderPlaylistHistory(){
   playlistHistoryEl.innerHTML="";
@@ -427,6 +448,20 @@ function setEventListeners() {
       var ele = $(target).closest(".playlistRow").remove();
     }
   });
+  bizEL.on("click", "a", function (event) {
+    event.preventDefault();
+    var target = $(event.currentTarget);
+    var index = target.index(this);
+    console.log(target);
+    console.log("Biz Link Click");
+    if (target.hasClass("xclass")) {
+      //Biz Link Click
+      console.log("Biz Link Click");
+      var ele = $(target).offsetParent().next();
+      console.log(ele);
+      collapse(ele);
+    }
+  })
 }
 
 init();

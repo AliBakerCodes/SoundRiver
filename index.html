@@ -34,6 +34,8 @@
     ></script>
 </script>
 <script src="https://w.soundcloud.com/player/api.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://apis.google.com/js/api.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>SoundRiver Playlist</title>
   </head>
@@ -102,7 +104,7 @@
                   <div class="switch">
                     <label class="white-text">
                       SoundCloud
-                      <input id="autoplaySwitch" type="checkbox" checked/>
+                      <input id="defaultPlayer" type="checkbox" checked/>
                       <span class="lever grey darken-3"></span>
                       YouTube
                     </label>
@@ -142,28 +144,34 @@
           <div class="col l4 offset-l2 s12">
             <!-- Hi Ali, I've added a couple of paragraph for the footer links, I want the user click on the "Our team", "Business strategy", "Business development" and "Contact us", the corresponding parts ".teamHide",  ".bizHide", ".devHide", ".contactHide" will show, it's easier to do it in JavaScript, can you please add this part? Thank you so much. -->
             <h5 class="white-text">About</h5>
-            <ul>
+            <ul id="biz">
               <li>
-                <h6><a class="grey-text text-lighten-3 teamLink" href="#!">Our team</a></h6>
-                <p class="teamHide">UI/UX Design: <br>
+                <h6><a class="grey-text text-lighten-3 teamLink xclass" href="#!">Our team</a></h6>
+                <div class="hide">
+                <p>UI/UX Design: <br>
                   James Wong and Jessie Doherty<br>
                   JavaScript Engineer: <br>
                   Ali Baker
                 </p>
+              </div>
               </li>
               <li>
-                <h6><a class="grey-text text-lighten-3 bizstrategyLink" href="#!">Business strategy</a></h6>
-                <p class="bizHide">
+                <h6><a class="grey-text text-lighten-3 bizstrategyLink xclass" href="#!">Business strategy</a></h6>
+                <div class="bhide hide">
+                <p>
                   A one-stop-shop for creating a playlist with posts from all multimedia platforms, getting information about the upcoming events, share your created playlist with friends and family, and so much more!
                 </p>
+                </div>
               </li>
               <li>
-                <h6><a class="grey-text text-lighten-3 bizdevLink" href="#!">Business development</a></h6>
-                <p class="devHide">Collaborate with us to expand your exposure on the Internet, reaching billions of audience ASAP!</p>
+                <h6><a class="grey-text text-lighten-3 bizdevLink xclass" href="#!">Business development</a></h6>
+                <div class="hide">
+                <p>Collaborate with us to expand your exposure on the Internet, reaching billions of audience ASAP!</p>
+              </div>
               </li>
               <li>
-                <h6><a class="grey-text text-lighten-3 contactLink" href="#!">Contact us</a></h6>
-                <div class="contactHide">
+                <h6><a class="grey-text text-lighten-3 contactLink xclass" href="#!">Contact us</a></h6>
+                <div class="hide">
                   <p>Ali Baker: <a href="mailto:alibakerconsulting@gmail.com">alibakerconsulting@gmail.com</a></p>
                   <p>James Wong: <a href="mailto:jamesyeuwong@gmail.com">jamesyeuwong@gmail.com</a></p>
                   <p>Jessie Doherty: <a href="mailto:zhuzhu93028@gmail.com">zhuzhu93028@gmail.com</a></p>
