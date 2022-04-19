@@ -350,7 +350,7 @@ function renderPlaylist(playlistOBJ){
         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com//${song.scLink}">
       </iframe></div>`
       } else if(song.defaultPlayer=='youtube'){
-        playerHTML=`<div class="player" data-index="${index}"><iframe class="youtube" data-yt-index="${ytIndex}" data-frame-index="${index}" id="yt-${ytIndex}" width="560" height="315" src="https://www.youtube.com/embed/${song.ytLink}?enablejsapi=1&origin=https://alibakercodes.github.io/SoundRiver/" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" style="border: solid 4px #37474F" allowfullscreen></iframe></div>`
+        playerHTML=`<div class="player" data-index="${index}"><iframe class="youtube" data-yt-index="${ytIndex}" data-frame-index="${index}" id="yt-${ytIndex}" width="560" height="315" src="https://www.youtube.com/embed/${song.ytLink}?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" style="border: solid 4px #37474F" allowfullscreen></iframe></div>`
       }
       songCard.innerHTML=`<li class="collection-item mainSong">
       <div><button title="Previous" type="button" class="previousTrack"><i class="material-icons">skip_previous</i></button></div>
