@@ -9,8 +9,9 @@
   var playerobjects=[];
   var autoplay=document.querySelector('#autoplaySwitch').value;
 var player;
-  function onYouTubeIframeAPIReady() {
 
+  function onYouTubeIframeAPIReady() {
+    var ytFrame=document.querySelectorAll(".youtube")
     ytIframeIds.forEach(function(iframeId) {
       console.log(iframeId)     
       player= new YT.Player(iframeId, {

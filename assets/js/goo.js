@@ -7,7 +7,7 @@ function loadClient() {
                 function(err) { console.error("Error loading GAPI client for API", err); });
 }
 
-const SEARCH_URL = "http://api.serpstack.com/search?access_key=da3e5fe26d960036cfb8f0a85e16b0cb&query="
+const SEARCH_URL = "https://api.serpstack.com/search?access_key=da3e5fe26d960036cfb8f0a85e16b0cb&query="
 
 
 var getTrack = async function(searchString) {
