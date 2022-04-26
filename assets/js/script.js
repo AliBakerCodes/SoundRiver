@@ -56,6 +56,11 @@ function init() {
 }
 
 //-------------Functions----------------------------
+function sortArray(arrayToSort){
+  
+}
+
+
 function collapse(ele) {
   if (ele.hasClass(HIDE_CLASS)) {
     ele.removeClass(HIDE_CLASS);

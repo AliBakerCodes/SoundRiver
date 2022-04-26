@@ -28,6 +28,11 @@ var player;
     console.log("Player Ready")
     var iframeObject=event.target
     playerobjects.push(iframeObject)
+    console.log(iframeObject.i.attributes['data-yt-index'].value)
+    playerobjects.sort((a, b) => {
+      return Number(a.i.attributes['data-yt-index'].value) - Number(b.i.attributes['data-yt-index'].value);
+    })
+    console.log(playerobjects);
   }
 
   function changeBorderColor(playerStatus) {
@@ -61,9 +66,11 @@ var player;
   function ytPlayPause(index){
     var ytFrame=document.querySelector(`[data-frame-index="${index}"]`)
     var ytIndex=ytFrame.getAttribute("data-yt-index");
-    console.log(ytIndex)
+    console.log("Youtube Index:" + ytIndex)
+    console.log("Youtube Players")
     console.log(playerobjects)
     var targetPlayer=playerobjects[ytIndex];
+    console.log("Target Player")
     console.log(targetPlayer);
     var playerStatus = targetPlayer.getPlayerState();
     console.log("Player Status: " + playerStatus);
